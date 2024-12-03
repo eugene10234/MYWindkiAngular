@@ -1,0 +1,69 @@
+/* 全局背景設置為白色 */
+body {
+  background-color: #ffffff; /* 白色背景 */
+  font-family: Arial, sans-serif;
+  color: #333; /* 深灰色字體 */
+}
+
+/* 中心對齊整個搜尋區域 */
+.search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  color: #333; /* 深灰色字體 */
+}
+
+/* 搜尋輸入框的樣式 */
+input {
+  width: 300px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #333; /* 深灰色邊框 */
+  border-radius: 5px;
+  margin-bottom: 10px;
+  outline: none;
+  color: #333; /* 深灰色字體 */
+  background-color: #ffffff; /* 白色背景 */
+}
+
+/* 搜尋按鈕的樣式 */
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #FF8C00; /* 橘色背景 */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #FF6A00; /* 橘色的深色變化 */
+}
+
+/* 搜尋結果列表的樣式 */
+ul {
+  list-style-type: none;
+  padding: 0;
+  width: 300px;
+}
+
+ul li {
+  padding: 10px;
+  border: 1px solid #333; /* 深灰色邊框 */
+  border-radius: 5px;
+  margin-bottom: 5px;
+  font-size: 16px;
+  background-color: #f9f9f9; /* 淺灰色背景 */
+  color: #333; /* 深灰色字體 */
+}
+
+/* 查無資料訊息的樣式 */
+.no-results-message {
+  color: #008000; /* 綠色 */
+  font-size: 16px;
+  margin-top: 10px;
+  text-align: center;
+}

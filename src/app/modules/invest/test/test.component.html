@@ -1,0 +1,16 @@
+<div class="search-container">
+  <input [(ngModel)]="query" placeholder="搜尋股票..." />
+  <button (click)="onSearch()">搜尋</button>
+
+  <!-- 查無資料訊息 -->
+  <div *ngIf="noResults" class="no-results-message">
+    查無資料，請重新輸入
+  </div>
+
+  <!-- 搜尋結果列表 -->
+  <ul *ngIf="!noResults">
+    <li *ngFor="let stock of searchResults">
+      {{ stock.fStockId }} - {{ stock.fStockName }}
+    </li>
+  </ul>
+</div>

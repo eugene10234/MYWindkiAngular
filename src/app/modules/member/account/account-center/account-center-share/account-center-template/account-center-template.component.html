@@ -1,0 +1,19 @@
+<div class="page-wrapper">
+  <!-- 左側選單 -->
+  <app-account-nav-bar class="nav-section"></app-account-nav-bar>
+
+  <!-- 主要內容區 -->
+  <div class="content-section">
+    <div class="content-container">
+      <ng-container [ngSwitch]="activeTab">
+        <app-avatar *ngSwitchCase="'avatar'" class="fade-in"></app-avatar>
+        <app-profiles-template *ngSwitchCase="'profile'" class="fade-in"></app-profiles-template>
+        <app-credit *ngSwitchCase="'credit'" class="fade-in"></app-credit>
+        <app-usergroup *ngSwitchCase="'usergroup'" class="fade-in"></app-usergroup>
+        <app-privacy *ngSwitchCase="'privacy'" class="fade-in"></app-privacy>
+        <app-sendmail *ngSwitchCase="'sendmail'" class="fade-in"></app-sendmail>
+        <app-password *ngSwitchCase="'password'" class="fade-in"></app-password>
+      </ng-container>
+    </div>
+  </div>
+</div>

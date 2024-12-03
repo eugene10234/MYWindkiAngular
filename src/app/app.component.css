@@ -1,0 +1,40 @@
+.carousel-control-prev,
+.carousel-control-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: auto;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    border-radius: 50%;
+}
+
+.carousel-control-prev {
+    left: 10px;
+}
+
+.carousel-control-next {
+    right: 10px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 20px;
+    height: 20px;
+}
+
+#carouselId {
+    position: relative;
+    overflow: hidden;
+}
+
+.layout-container{
+  margin-top:  76px;
+  padding-top: 76px;
+
+}
+
+.page-spacing{
+  padding-top: 76px;
+}

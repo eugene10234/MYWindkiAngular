@@ -1,0 +1,29 @@
+<div class="container">
+  <h1>台灣證券交易所 BWIBBU 全部資料</h1>
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+  <table *ngIf="marketData.length > 0">
+    <thead>
+      <tr>
+        <th>股票代號</th>
+        <th>股票名稱</th>
+        <th>殖利率 (%)</th>
+        <th>股利年度</th>
+        <th>本益比</th>
+        <th>股價淨值比</th>
+        <th>資料日期</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let stock of marketData">
+        <td>{{ stock.StockNo }}</td>
+        <td>{{ stock.StockName }}</td>
+        <td>{{ stock.Yield }}</td>
+        <td>{{ stock.DividendYear }}</td>
+        <td>{{ stock.PER }}</td>
+        <td>{{ stock.PBR }}</td>
+        <td>{{ stock.Date }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

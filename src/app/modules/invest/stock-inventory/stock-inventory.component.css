@@ -1,0 +1,129 @@
+/* 主容器樣式 */
+.container {
+  width: 80%;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+/* 標題樣式 */
+h2 {
+  text-align: center;
+  color: #FF8C00; /* 橘色 */
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* 表格樣式 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+/* 表格標題樣式 */
+th {
+  background-color: #FF8C00; /* 橘色 */
+  color: white;
+  font-weight: bold;
+}
+
+/* 表格行樣式 */
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+  background-color: #e6f7e6; /* 淡綠色 */
+}
+
+/* 表格文字顏色 */
+td {
+  color: #333;
+}
+
+/* 表格數字欄位樣式 */
+td:nth-child(4),
+td:nth-child(5),
+td:nth-child(6) {
+  font-weight: bold;
+  color: #228B22; /* 深綠色 */
+}
+
+/* 表單按鈕樣式 */
+button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+  font-weight: bold;
+}
+
+/* 新增按鈕樣式 */
+button.add-btn {
+  background-color: #FF8C00; /* 橘色 */
+  color: white;
+}
+
+button.add-btn:hover {
+  background-color: #e07b00;
+}
+
+/* 刪除按鈕樣式 */
+button.delete-btn {
+  background-color: #808080; /* 灰色 */
+  color: white;
+}
+
+button.delete-btn:hover {
+  background-color: #6e6e6e;
+}
+
+/* 更新按鈕樣式 */
+button.update-btn {
+  background-color: #228B22; /* 深綠色 */
+  color: white;
+}
+
+button.update-btn:hover {
+  background-color: #1c731c;
+}
+
+/* 表單區域樣式 */
+.form-container {
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+}
+
+.form-container h3 {
+  color: #228B22; /* 深綠色 */
+  margin-bottom: 15px;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+label {
+  font-weight: bold;
+  color: #333;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

@@ -1,0 +1,214 @@
+<div class="container-fluid hero-header ">
+  <div class="container py-2">
+    <div class="row  align-items-center">
+
+         <div class="carousel-container col-12 position-relative">
+        <!-- 標題定位在輪播圖上方 -->
+        <h1 class="position-absolute text-white-secondary z-3" style="top: -50px; left: 0;">多一點付出，多一點幸福</h1>
+
+        <div id="carouselId" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+          <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active rounded">
+              <img src="assets/img/HelpGoods_1.jpg" class="img-fluid w-100 h-100 bg-secondary rounded"
+                alt="First slide">
+              <div class="carousel-caption">
+                <a href="#" class="btn px-4 py-2 text-white rounded">公益</a>
+              </div>
+
+            </div>
+            <div class="carousel-item rounded">
+              <img src="assets/img/HelpGoods_2.jpg" class="img-fluid w-100 h-100 rounded" alt="Second slide">
+              <div class="carousel-caption">
+                <a href="#" class="btn px-4 py-2 text-white rounded">動物</a>
+              </div>
+            </div>
+            <div class="carousel-item rounded">
+              <img src="assets/img/HelpGoods_3.jpg" class="img-fluid w-100 h-100 rounded" alt="Third slide">
+              <div class="carousel-caption">
+                <a href="#" class="btn px-4 py-2 text-white rounded">環境</a>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselId" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--search bar-->
+  <!-- 搜尋欄 -->
+  <div class="d-flex justify-content-center my-2">
+    <div class="search-bar-container position-relative border-2 d-flex align-items-center">
+      <!-- 搜尋輸入框，使用 ngModel 雙向綁定 searchQuery -->
+      <input class="form-control border-2 border-blue py-3 px-4 rounded-pill" type="text" placeholder="輸入商品"
+        [(ngModel)]="searchQuery" (keyup.enter)="searchItems()">
+      <!-- 搜尋按鈕，點擊時調用 searchItems 方法 -->
+      <button type="button"
+        class="btn btn-primary border-2 border-white py-3 px-4 rounded-pill text-white h-100 d-flex align-items-center justify-content-center ms-2"
+        (click)="searchItems()">搜尋</button>
+      <!-- 清除搜尋結果按鈕 -->
+      <button type="button"
+        class="btn btn-secondary border-2 border-white py-3 px-4 rounded-pill text-white h-100 d-flex align-items-center justify-content-center ms-2"
+        (click)="clearSearchResults()">清除</button>
+    </div>
+  </div>
+
+<!-- Help Shop Start-->
+<div class="container-fluid fruite ">
+  <div class="container py-3">
+    <div class="tab-class text-center">
+      <div class="row g-4">
+        <div class="col-lg-4 text-start">
+          <h1>點數做公益</h1>
+        </div>
+        <div class="col-lg-8 text-end">
+          <ul class="nav nav-pills d-inline-flex text-center mb-5">
+            <li class="nav-item">
+              <a class="d-flex m-2 py-2 bg-light rounded-pill active" data-bs-toggle="pill" href="#tab-1"
+                (click)="filterItems(0)">
+                <span class="text-dark" style="width: 120px;">所有品項</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="d-flex py-2 m-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-2"
+                (click)="filterItems(1)">
+                <span class="text-dark" style="width: 120px;">幫人</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-3"
+                (click)="filterItems(2)">
+                <span class="text-dark" style="width: 120px;">幫動物</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="d-flex py-2 m-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4"
+                (click)="filterItems(3)">
+                <span class="text-dark" style="width: 120px;">幫環境</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-5"
+                (click)="filterItems(4)">
+                <span class="text-dark" style="width: 120px;">其他</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+<!-- Fruits Shop Start-->
+      <div class="row">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <div class="items-per-page">
+            <label class="me-2" style="color: black;">每頁顯示：</label>
+            <select class="form-select form-select-sm" [(ngModel)]="itemsPerPage" (change)="onItemsPerPageChange()">
+              <option value="8">8 項</option>
+              <option value="12">12 項</option>
+              <option value="16">16 項</option>
+              <option value="24">24 項</option>
+            </select>
+          </div>
+          <div class="total-items ">
+            共 {{ filteredItems.length }} 項商品
+            <!-- 排序按鈕 -->
+<div class="sort-controls">
+  <div class="btn-group btn-group-sm">
+    <button
+      class="btn btn-outline-secondary btn-sm"
+      [class.active]="isSortActive(SortOptions.PRICE_ASC)"
+      (click)="sortProducts(SortOptions.PRICE_ASC)">
+      <i class="fas fa-sort-amount-up-alt fa-sm"></i>
+      低到高
+    </button>
+    <button
+      class="btn btn-outline-secondary btn-sm"
+      [class.active]="isSortActive(SortOptions.PRICE_DESC)"
+      (click)="sortProducts(SortOptions.PRICE_DESC)">
+      <i class="fas fa-sort-amount-down fa-sm"></i>
+      高到低
+    </button>
+    <!-- 重置按鈕 -->
+    <button
+      class="btn btn-outline-secondary btn-sm"
+      *ngIf="currentSort"
+      (click)="resetSort()">
+      <i class="fas fa-undo fa-sm"></i>
+      重置
+    </button>
+  </div>
+</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-lg-4 col-xl-3"
+               style="margin-bottom: 20px;"
+               *ngFor="let item of filteredItems | slice: (currentPage-1) * itemsPerPage : currentPage * itemsPerPage">
+            <div class="rounded position-relative fruite-item border border-secondary "> <!-- 添加邊界線 -->
+              <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">
+                {{ item.category | category }}
+              </div>
+              <div class="fruite-img mt-5"> <!-- 添加 margin-top 使圖片下移 -->
+                <a [routerLink]="['/detail', item.id]"> <!-- 使用 Angular 路由 -->
+                  <div class="image-container">
+                    <img [src]="'assets/img/'+item.image" class="img-fluid rounded-top" alt="{{ item.name }}">
+                  </div>
+                </a>
+              </div>
+              <div class="p-4 border-top-0 rounded-bottom" style="min-height: 175px;">
+                <h4 class="item-name">{{ item.name }}</h4>
+                <!--<p>{{ item.description }} </p>-->
+                <p class="price">{{ item.price}}點</p> <!-- 使用 ms-auto 使金額靠右 -->
+                <div class="add-to-cart">
+                <button (click)="addToCart(item)" class="btn border border-secondary rounded-pill px-3 text-primary mt-2">
+                  <i class="fa fa-shopping-bag mb-1 text-primary"></i> 加入購物車
+                </button>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Fruits Shop End-->
+
+<!-- 分頁控制 -->
+<div class="d-flex justify-content-center mt-4">
+  <nav aria-label="Page navigation">
+    <ul class="pagination">
+      <!-- 上一頁 -->
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" (click)="changePage(currentPage - 1)" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+
+      <!-- 頁碼 -->
+      <li class="page-item"
+          *ngFor="let page of getPages()"
+          [class.active]="page === currentPage">
+        <a class="page-link" (click)="changePage(page)">{{ page }}</a>
+      </li>
+
+      <!-- 下一頁 -->
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <a class="page-link" (click)="changePage(currentPage + 1)" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+

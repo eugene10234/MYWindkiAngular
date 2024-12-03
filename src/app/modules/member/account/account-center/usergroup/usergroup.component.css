@@ -1,0 +1,70 @@
+
+
+.group-list, .available-groups {
+  margin-top: 20px;
+}
+
+.group-item {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.group-info h3 {
+  margin: 0 0 8px 0;
+  color: #333;
+}
+
+.group-description {
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.group-meta {
+  display: flex;
+  gap: 16px;
+  font-size: 14px;
+  color: #888;
+}
+
+.group-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.join-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.join-btn:hover {
+  background-color: #45a049;
+}
+
+.leave-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.leave-btn:hover {
+  background-color: #da190b;
+}
+
+.available-groups h3 {
+  margin: 24px 0 16px 0;
+  color: #333;
+}

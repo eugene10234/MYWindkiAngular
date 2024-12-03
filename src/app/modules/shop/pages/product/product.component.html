@@ -1,0 +1,31 @@
+<div class="container">
+  <h2>產品管理</h2>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <div class="product-form">
+    <h3>新增產品</h3>
+    <input [(ngModel)]="newProduct.Name" placeholder="產品名稱">
+    <input [(ngModel)]="newProduct.price" placeholder="產品價格" type="number">
+    <button (click)="addProduct()">新增</button>
+  </div>
+
+  <div class="product-list">
+    <h3>產品列表</h3>
+    <div *ngFor="let product of products">
+      <div *ngIf="editingProduct && editingProduct.id === product.id">
+        <input [(ngModel)]="editingProduct.name" placeholder="產品名稱">
+        <input [(ngModel)]="editingProduct.price" placeholder="產品價格" type="number">
+        <button (click)="updateProduct()">更新</button>
+        <button (click)="cancelEdit()">取消</button>
+      </div>
+      <div *ngIf="!editingProduct || editingProduct.id !== product.id">
+        <span>{{ product.name }} - {{ product.price | currency }}</span>
+        <button (click)="editProduct(product)">編輯</button>
+        <button (click)="deleteProduct(product.id)">刪除</button>
+      </div>
+    </div>
+  </div>
+</div>

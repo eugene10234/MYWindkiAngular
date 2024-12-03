@@ -1,0 +1,113 @@
+/* 容器樣式 */
+.container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f9f9f9; /* 淺灰背景 */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 陰影效果 */
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+}
+
+/* 會員信息樣式 */
+.member-info {
+  font-size: 16px;
+  color: #666; /* 中灰色 */
+  margin-bottom: 20px;
+}
+
+.member-info .highlight {
+  font-weight: bold;
+  color: #ff6600; /* 橘色強調文字 */
+}
+
+/* 功能按鈕樣式 */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.nav-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.nav-button.orange {
+  background-color: #ff6600; /* 橘色 */
+}
+
+.nav-button.orange:hover {
+  background-color: #e65c00;
+  transform: translateY(-2px);
+}
+
+.nav-button.green {
+  background-color: #28a745; /* 綠色 */
+}
+
+.nav-button.green:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+.nav-button.gray {
+  background-color: #6c757d; /* 灰色 */
+}
+
+.nav-button.gray:hover {
+  background-color: #5a6268;
+  transform: translateY(-2px);
+}
+
+/* 標題樣式 */
+.title {
+  font-size: 28px;
+  color: #ff6600; /* 橘色標題 */
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+/* 信息盒樣式 */
+.info-box {
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #ffffff; /* 白色背景 */
+  border: 1px solid #e0e0e0; /* 淺灰邊框 */
+  border-radius: 8px;
+  text-align: left;
+}
+
+/* 信息標題 */
+.info-box h2 {
+  font-size: 22px;
+  color: #28a745; /* 綠色標題 */
+  margin-bottom: 15px;
+}
+
+/* 信息內容 */
+.info-box p {
+  font-size: 18px;
+  margin: 10px 0;
+  color: #333; /* 深灰色文字 */
+}
+
+.info-box p span {
+  font-weight: bold;
+  color: #ff6600; /* 橘色強調文字 */
+}
+
+/* 加載樣式 */
+.loading {
+  font-size: 18px;
+  color: #999; /* 灰色提示文字 */
+  font-style: italic;
+  margin-top: 20px;
+}

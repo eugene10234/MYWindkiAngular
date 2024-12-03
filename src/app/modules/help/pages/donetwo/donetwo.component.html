@@ -1,0 +1,39 @@
+<body>
+<div class="booking-container">
+  <div class="header">
+    <div class="checkmark-container">
+      <div class="checkmark"></div>
+    </div>
+    <h3 class="delayed">發佈成功</h3>
+  </div>
+  <div class="notification delayed">
+    靜候片刻，系統將盡快進行媒合
+  </div>
+  <!-- 載入中提示 -->
+  <div *ngIf="loading" class="loading-message">
+    載入中...
+  </div>
+
+  <!-- 錯誤提示 -->
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+
+  <div *ngIf="latestHelp && !loading" class="booking-info delayed">
+    <h2>任務內容</h2>
+    <h3>{{ getHelpClassName(latestHelp.helpClass) }}</h3>
+    <ul>
+      <li><i class="material-icons">日期 : </i> {{ formatDate(latestHelp.createTime) }}</li>
+      <li><i class="material-icons">地點 : </i> {{ getDisplayData().districtID }}</li>
+      <li><i class="material-icons">詳細內容 : </i> {{ latestHelp.helpContent }}</li>
+    </ul>
+    <div class="actions">
+      <button class="btn reschedule" (click)="backtomain()">回首頁</button>
+      <button class="btn cancel" (click)="gotomakesure()">查看紀錄</button>
+    </div>
+  </div>
+  <div class="timezone-info">
+    All times are in (UTC +8) , Taipei, Taiwan
+  </div>
+</div>
+</body>

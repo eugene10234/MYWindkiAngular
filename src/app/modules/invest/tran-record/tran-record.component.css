@@ -1,0 +1,113 @@
+/* 主體背景 */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4; /* 淺灰色背景 */
+  margin: 0;
+  padding: 0;
+  color: #333; /* 深灰色文字 */
+}
+
+/* 標題設計 */
+h2 {
+  color: #2b7a0b; /* 深綠色 */
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* 表格樣式 */
+table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background-color: #fff; /* 白色背景 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 淺陰影 */
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ddd; /* 淺灰色邊框 */
+}
+
+th {
+  background-color: #2b7a0b; /* 深綠色 */
+  color: #fff; /* 白色文字 */
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9; /* 偶數行淺灰背景 */
+}
+
+tr:nth-child(odd) {
+  background-color: #e9f5e9; /* 奇數行帶綠背景 */
+}
+
+tr:hover {
+  background-color: #f7ddb5; /* 滑鼠懸停橘色背景 */
+  cursor: pointer;
+}
+
+/* 按鈕樣式 */
+button {
+  background-color: #ff9100; /* 橘色背景 */
+  color: #fff; /* 白色文字 */
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #e67e00; /* 深橘色 */
+}
+
+button:disabled {
+  background-color: #aaa; /* 灰色禁用狀態 */
+  cursor: not-allowed;
+}
+
+/* 表單樣式 */
+form {
+  width: 50%;
+  margin: 20px auto;
+  background-color: #fff; /* 白色背景 */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 淺陰影 */
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #2b7a0b; /* 深綠色文字 */
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+input:focus, select:focus {
+  border-color: #2b7a0b; /* 深綠色聚焦效果 */
+  outline: none;
+  box-shadow: 0 0 4px rgba(43, 122, 11, 0.5); /* 綠色光暈 */
+}
+
+/* 頁面底部 */
+footer {
+  text-align: center;
+  padding: 10px 0;
+  background-color: #2b7a0b; /* 深綠色背景 */
+  color: #fff; /* 白色文字 */
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}

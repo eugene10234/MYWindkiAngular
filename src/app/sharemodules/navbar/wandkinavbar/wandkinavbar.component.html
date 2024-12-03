@@ -1,0 +1,70 @@
+<!-- Navbar start -->
+<div style="z-index: 10;" class="container-fluid fixed-top">
+  <div class="container topbar bg-primary d-none d-lg-block">
+    <div class="d-flex justify-content-between">
+      <div class="top-info ps-2">
+        <small class="me-3"><i class="fas fa-map-marker-alt me-2 text-secondary"></i> <a href="#" class="text-white">123
+            Street, New York</a></small>
+        <small class="me-3"><i class="fas fa-envelope me-2 text-secondary"></i><a href="#"
+            class="text-white">Email</a></small>
+      </div>
+      <div class="top-link pe-2">
+        <a href="#" class="text-white"><small class="text-white mx-2">Privacy Policy</small>/</a>
+        <a href="#" class="text-white"><small class="text-white mx-2">Terms of Use</small>/</a>
+        <a href="#" class="text-white"><small class="text-white ms-2">Sales and Refunds</small></a>
+        <a class="text-white" style="cursor:pointer;" (click)="openChild()"><small class="text-white ms-2">登入</small></a>
+        <a routerLink="member/account/profile/base" class="text-white"><small class="text-white ms-2">會員中心</small></a>
+        <a routerLink="member/password/forget" class="text-white"><small class="text-white ms-2">forget</small></a>
+        <a routerLink="member/password/reset" class="text-white"><small class="text-white ms-2">reset</small></a>
+      </div>
+    </div>
+  </div>
+  <div class="container px-0">
+    <nav class="navbar navbar-light bg-white navbar-expand-xl">
+      <a routerLink="mainpage" class="navbar-brand">
+        <h1 class="text-primary display-6">Wandki</h1>
+      </a>
+      <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="fa fa-bars text-primary"></span>
+      </button>
+      <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+        <div class="navbar-nav mx-auto">
+          <div class="nav-item dropdown">
+            <a class="nav-link" routerLink="/invest/market-index" role="button">
+              開始投資
+            </a>
+          </div>
+          <!-- <a routerLink="/mainpage" class="nav-item nav-link active">首頁</a> -->
+
+          <!-- 助人為善下拉選單 -->
+          <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" routerLink="/help/main" role="button">
+              愛與互助
+            </a>
+            <div class="dropdown-menu">
+              <a routerLink="/help/main" class="dropdown-item">助人申請</a>
+              <a routerLink="/help/requesthelp" class="dropdown-item">求助發布</a>
+              <a routerLink="/help/management" class="dropdown-item">管理紀錄</a>
+            </div>
+          </div>
+          <a routerLink="/social/social" class="nav-item nav-link">社群交流</a>
+           <!-- 商城下拉選單 -->
+          <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" routerLink="/shop/shop" role="button">
+              助人商城
+            </a>
+            <div class="dropdown-menu">
+              <a routerLink="/shop/shop" class="dropdown-item">商城主頁</a>
+              <a routerLink="/order" class="dropdown-item">訂單查詢</a>
+              <!--<a routerLink="/product" class="dropdown-item">產品上架</a>-->
+            </div>
+          </div>
+          <!-- <a routerLink="/detail" class="nav-item nav-link">Contact</a> -->
+        </div>
+        <app-navlog ></app-navlog>
+      </div>
+    </nav>
+  </div>
+</div>
+<!-- Navbar End -->
+<app-login></app-login>

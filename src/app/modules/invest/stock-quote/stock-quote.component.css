@@ -1,0 +1,77 @@
+/* 中心化容器 */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* 標題樣式 */
+h1 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* 輸入框樣式 */
+input[type="text"] {
+  padding: 10px;
+  width: 250px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+  border-color: #007bff;
+}
+
+/* 按鈕樣式 */
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* 股票資料顯示區域 */
+.stock-data {
+  margin-top: 20px;
+  padding: 15px;
+  width: 100%;
+  max-width: 500px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.stock-data p {
+  font-size: 14px;
+  color: #555;
+  margin: 5px 0;
+}
+
+/* 小標題樣式 */
+.section-title {
+  font-weight: bold;
+  color: #333;
+  margin-top: 10px;
+}
+/* 錯誤訊息樣式 */
+.error-message {
+  color: #ff4d4f;
+  font-weight: bold;
+  margin-top: 10px;
+}

@@ -1,0 +1,70 @@
+<div class="contact-container">
+  <h2>聯絡資訊</h2>
+
+  <form class="contact-form">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="phone">手機號碼</label>
+        <div class="input-group">
+          <input type="tel" id="phone" [(ngModel)]="contactInfo.phone" name="phone" placeholder="請輸入手機號碼">
+          <div class="verify-status" *ngIf="!contactInfo.isPhoneVerified">
+            <span class="unverified-text">未驗證</span>
+            <button type="button" class="verify-btn" (click)="verifyPhone()">驗證</button>
+          </div>
+          <div class="verify-status" *ngIf="contactInfo.isPhoneVerified">
+            <span class="verified-text">已驗證</span>
+            <i class="fas fa-check-circle"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="email">電子郵件</label>
+        <div class="input-group">
+          <input type="email" id="email" [(ngModel)]="contactInfo.email" name="email" placeholder="請輸入電子郵件">
+          <div class="verify-status" *ngIf="!contactInfo.isEmailVerified">
+            <span class="unverified-text">未驗證</span>
+            <button type="button" class="verify-btn" (click)="verifyEmail()">驗證</button>
+          </div>
+          <div class="verify-status" *ngIf="contactInfo.isEmailVerified">
+            <span class="verified-text">已驗證</span>
+            <i class="fas fa-check-circle"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="address">聯絡地址</label>
+        <input type="text" id="address" [(ngModel)]="contactInfo.address" name="address" placeholder="請輸入聯絡地址">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="emergencyContact">緊急聯絡人</label>
+        <input type="text" id="emergencyContact" [(ngModel)]="contactInfo.emergencyContact" name="emergencyContact" placeholder="請輸入緊急聯絡人姓名">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="emergencyPhone">緊急聯絡人電話</label>
+        <input type="tel" id="emergencyPhone" [(ngModel)]="contactInfo.emergencyPhone" name="emergencyPhone" placeholder="請輸入緊急聯絡人電話">
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="cancel-btn" (click)="resetForm()">取消</button>
+      <button type="submit" class="save-btn" (click)="saveContact()">儲存變更</button>
+    </div>
+  </form>
+</div>
+
+
+
+
+

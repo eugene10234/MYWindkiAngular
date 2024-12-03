@@ -1,0 +1,45 @@
+
+<!-- 此頁面為幫助人配對成功後的頁面 -->
+<body>
+  <div class="booking-container">
+    <div class="header">
+      <div class="checkmark-container">
+        <div class="checkmark"></div>
+      </div>
+      <h3 class="delayed">媒合成功</h3>
+    </div>
+    <div class="notification delayed1">
+      感謝您的愛心，幫助人的路上也請注意自身安全
+    </div>
+    <!-- 載入中提示 -->
+    <div *ngIf="loading" class="loading-message">
+      載入中...
+    </div>
+
+    <!-- 錯誤提示 -->
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+    </div>
+
+    <div *ngIf="latestHelp && !loading" class="booking-info delayed">
+      <h2>任務內容</h2>
+      <h3>{{ getHelpClassName() }}</h3>
+      <ul>
+        <li><i class="material-icons">日期 : </i> {{ formatDate() }}</li>
+        <li><i class="material-icons">地點 : </i> {{ getDistrictName()  }}</li>
+
+        <li><i class="material-icons">求助者 : </i> {{ latestHelp.helpName }}</li>
+        <li><i class="material-icons">詳細內容 : </i> {{ latestHelp.helpContent }}</li>
+        <!-- <li><i class="material-icons">聯絡信箱 : </i> {{ latestHelp.helperEmail }}</li> -->
+        <li><i class="material-icons">聯絡電話 : </i> {{ latestHelp.helpPhone }}</li>
+      </ul>
+      <div class="actions">
+        <button class="btn reschedule" (click)="backtomain()">回首頁</button>
+        <button class="btn cancel" (click)="gotomakesure()">查看紀錄</button>
+      </div>
+    </div>
+    <div class="timezone-info">
+      All times are in (UTC +5:30) Chennai, Kolkata, Mumbai, New Delhi
+    </div>
+  </div>
+  </body>

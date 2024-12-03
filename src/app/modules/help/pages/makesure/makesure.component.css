@@ -1,0 +1,166 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f8f8;
+  padding: 80px 20px 20px;
+}
+.delayed {
+  opacity: 0;
+  animation: delayed-appearance 0.5s ease forwards;
+  animation-delay: 0.1s;
+}
+@keyframes delayed-appearance {
+  to {
+    opacity: 1;
+  }
+}
+.container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: auto;
+  border: 2px solid #28a745;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.title {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.btn-back {
+  position: absolute;
+  left: 0;
+  background-color: #ffffff;
+  color: #343a40;
+  border: 2px solid #28a745;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-back:hover {
+  background-color: #e9f5e9;
+}
+
+.form-section {
+  font-size: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 20px;
+
+
+}
+.content-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 30px;
+  margin-top: 60px;
+}
+
+.left-section {
+  flex: 1;
+  min-width: 280px;
+}
+
+.right-section {
+  flex: 1;
+  min-width: 280px;
+}
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  background-color: #f1f1f1;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.profile-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.profile-info {
+  font-size: 1.2rem;
+}
+.profile-name{
+  font-size: 1.5rem;
+}
+.profile-info .rating {
+  margin-top: 10px;
+  color: #777;
+}
+.profile-content{
+  font-size: 1.2rem;
+}
+.total-points {
+  font-size: 1.5rem;
+  text-align: right;
+  margin-bottom: 30px;
+  margin-top: 50px;
+}
+
+.login-section {
+  margin-bottom: 20px;
+  margin-top: 100px;
+}
+
+.login-section label {
+  font-weight: bold;
+  color: #343a40;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.login-section input {
+  width: 80%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 0.8rem;
+}
+
+.btn-login {
+  background-color: #ff4081;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 80%;
+}
+
+.btn-login:hover {
+  background-color: #ff2052;
+}
+
+.btn-submit {
+  background-color: #ff4081;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+.btn-submit:hover {
+  background-color: #ff2052;
+}

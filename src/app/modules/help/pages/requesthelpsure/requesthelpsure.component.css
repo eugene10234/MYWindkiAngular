@@ -1,0 +1,245 @@
+body {
+  font-family: 'Noto Sans TC', Arial, sans-serif;
+  background-color: #f0f2f5;
+  padding: 80px 20px 20px;
+}
+
+.container {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  max-width: 1000px;
+  margin: auto;
+  border: none;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.title {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  text-align: center;
+}
+.list-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.date {
+  color: #666;
+  font-size: 1.5rem;
+}
+
+.btn-back {
+  position: absolute;
+  left: 0;
+  background-color: #ffffff;
+  color: #2c3e50;
+  border: 2px solid #3498db;
+  padding: 12px 24px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.btn-back:hover {
+  background-color: #3498db;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+.help-image-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  text-align: center;
+
+}
+
+.help-image-card img {
+  width: 220px;
+  height: 220px;
+  object-fit: contain;
+  border-radius: 10px;
+  animation: gentle-float 3s ease-in-out infinite;
+}
+
+@keyframes gentle-float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
+}
+
+.content-section {
+  display: flex;
+  gap: 30px;
+  margin: 30px 0;
+}
+
+.left-section {
+  flex: 1;
+  min-width: 280px;
+}
+
+.right-section {
+  flex: 2;
+}
+
+.form-section {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+}
+
+.form-section div {
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.login-section {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.login-section img {
+  width: 120px;  /* 縮小圖片尺寸 */
+  height: 120px; /* 縮小圖片尺寸 */
+  object-fit: contain; /* 改為 contain 以確保圖片不會被裁剪 */
+  border-radius: 15px;
+  margin-bottom: 25px;
+  transform-origin: center; /* 設置動畫旋轉的中心點 */
+  animation: gentle-float 3s ease-in-out infinite; /* 改用更溫和的浮動動畫 */
+}
+/* 新的浮動動畫 */
+@keyframes gentle-float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.login-section h4 {
+  color: #2c3e50;
+  font-size: 1.3rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+.profile-card {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+}
+
+.profile-name {
+  font-size: 1.6rem;
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+.help-class-tag {
+  display: inline-block;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  padding: 6px 15px;
+  border-radius: 20px;
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.profile-content {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+  line-height: 1.6;
+  color: #2c3e50;
+  font-size: 1.4rem;
+}
+
+.total-points {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  text-align: right;
+  font-size: 1.3rem;
+  color: #312c50;
+  font-weight: 600;
+}
+
+.btn-submit {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  border: none;
+  padding: 18px 35px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-top: 30px;
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+}
+
+.btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
+}
+.distance-info {
+  color: #666;
+  margin: 10px 0;
+  font-size: 1.2rem;
+}
+
+.rating {
+  font-size: 1.2rem;
+  color: #2c3e50;
+}
+
+.rating-count {
+  color: #666;
+  font-size: 0.9rem;
+}
+/* 動畫效果保持不變 */
+.delayed {
+  opacity: 0;
+  animation: delayed-appearance 0.5s ease forwards;
+  animation-delay: 0.1s;
+}
+
+@keyframes delayed-appearance {
+  to {
+    opacity: 1;
+  }
+}
+
+/* @keyframes swing {
+  0% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+  100% { transform: rotate(-3deg); }
+} */

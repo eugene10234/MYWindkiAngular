@@ -1,0 +1,95 @@
+<!-- Hero Section -->
+<div class="hero-section"  #heroSection>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-title">
+      <h1>幫助人，就從現在開始</h1>
+    </div>
+    <div class="hero-subtitle">
+      <p>協助他人，成就自己，從此刻開始，點燃善意的火花</p>
+    </div>
+    <div class="hero-action">
+      <a (click)="scrollToContent($event)" class="action-button">立即行動</a>
+    </div>
+  </div>
+</div>
+
+<!-- Content Section -->
+<div #contentSection class="content-section">
+  <div class="row position-relative h-100">
+    <!-- 左側表單區域 -->
+    <div class="col-md-5 form-wrapper">
+      <div class="form-container">
+        <div class="header-container">
+          <h2>在Wandki上幫助別人</h2>
+          <button class="demo-btn" (click)="fillDemoData()">
+            <i class="fas fa-magic"></i> DEMO
+          </button>
+        </div>
+        <p>依照您的專長或定位來進行配對</p>
+        <form>
+          <!-- 位置欄位 -->
+          <div class="mb-3 position-relative">
+            <label for="location" class="form-label">位置</label>
+            <div class="input-group">
+              <input
+                type="text"
+                placeholder="任何地方"
+                class="form-control rounded-input"
+                id="location"
+                style="padding-right: 100px;"
+                [(ngModel)]="formData.address"
+                name="address"
+                #locationInput>
+              <button
+                type="button"
+                class="btn btn-secondary position-absolute"
+                style="right: 0; top: 0; height: 100%;"
+                (click)="getCurrentLocation(locationInput)">
+                現在位置
+              </button>
+            </div>
+          </div>
+
+          <!-- 姓名和電子郵件欄位 -->
+          <div class="form-row mb-3">
+            <div class="form-group left-align">
+              <label for="name" class="form-label">姓名</label>
+              <input
+                type="text"
+                class="form-control rounded-input"
+                id="name"
+                name="name"
+                [(ngModel)]="helperData.name"
+                placeholder="請輸入姓名">
+            </div>
+            <div class="form-group right-align">
+              <label for="email" class="form-label">電子郵件</label>
+              <input
+                type="text"
+                class="form-control rounded-input"
+                id="email"
+                name="email"
+                [(ngModel)]="helperData.email"
+                placeholder="請輸入電子郵件">
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-primary w-100"
+            (click)="executeActions()">
+            搜尋
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- 右側圖片區域 -->
+    <div class="col-md-7 image-wrapper">
+      <div class="image-container">
+        <img src="assets/helping1/images/pichelp.jpg" alt="描述" class="img-fluid">
+      </div>
+    </div>
+  </div>
+</div>

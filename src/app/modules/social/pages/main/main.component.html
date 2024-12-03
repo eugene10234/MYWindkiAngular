@@ -1,0 +1,355 @@
+<!-- 主要布局容器 -->
+<div class="layout-container">
+  <!-- 左側邊欄 - 包含主要導航選項 -->
+  <div class="left-sidebar">
+    <!-- 導航菜單 -->
+    <nav class="nav-menu">
+      <!-- 首頁選項 -->
+      <div class="nav-item" [routerLink]="['/social/main']" routerLinkActive="active">
+        <i class="pi pi-home"></i>
+        <span>Home</span>
+      </div>
+      <!-- 探索選項 -->
+      <div class="nav-item" [routerLink]="['/social/search']" routerLinkActive="active">
+        <i class="pi pi-search"></i>
+        <span>Explore</span>
+      </div>
+      <!-- 訊息選項 -->
+      <div class="nav-item" [routerLink]="['/social/message']" routerLinkActive="active">
+        <i class="pi pi-envelope"></i>
+        <span>Messages</span>
+      </div>
+      <!-- 個人資料選項 -->
+      <div class="nav-item" [routerLink]="['/social/person']" routerLinkActive="active">
+        <i class="pi pi-user"></i>
+        <span>個人資料</span>
+      </div>
+    </nav>
+  </div>
+
+  <!-- 主要內容區域 -->
+  <div class="main-content">
+    <!-- 發文卡片區域 -->
+    <div class="create-post-card">
+      <h2 class="create-post-title">發表文章</h2>
+
+      <!-- 發文輸入區域 -->
+      <div class="create-post-input">
+        <!-- 用戶頭像預留位置 -->
+        <div class="avatar-placeholder"></div>
+
+        <!-- 預覽區域 -->
+        <div class="preview-area" *ngIf="selectedImage || locationText">
+          <div class="image-preview" *ngIf="selectedImage">
+            <img [src]="selectedImage" alt="預覽圖片">
+            <i class="pi pi-times remove-preview" (click)="removeImage()"></i>
+          </div>
+          <div class="location-text" *ngIf="locationText || locationLoading">
+            <i class="pi" [ngClass]="{'pi-map-marker': !locationLoading, 'pi-spinner pi-spin': locationLoading}"></i>
+            <span>{{locationLoading ? '正在獲取位置...' : locationText}}</span>
+            <i class="pi pi-times remove-preview" (click)="removeLocation()" *ngIf="!locationLoading"></i>
+          </div>
+        </div>
+
+        <!-- 文章輸入框 -->
+        <textarea class="post-input"
+                 [(ngModel)]="newPostContent"
+                 placeholder="What is happening?!"
+                 rows="3"></textarea>
+      </div>
+
+      <!-- 發文功能按鈕區 -->
+      <div class="post-action-buttons">
+        <!-- 左側功能按鈕 -->
+        <div class="action-buttons-left">
+          <!-- 圖片上傳按鈕 -->
+          <div class="action-button">
+            <input type="file"
+                   #imageInput
+                   accept="image/*"
+                   (change)="handleImageUpload($event)"
+                   style="display: none">
+            <i class="pi pi-image" (click)="imageInput.click()"></i>
+          </div>
+
+          <!-- 檔案上傳按鈕 -->
+          <div class="action-button">
+            <input type="file"
+                   #fileInput
+                   (change)="handleFileUpload($event)"
+                   style="display: none">
+            <i class="pi pi-file" (click)="fileInput.click()"></i>
+          </div>
+
+          <!-- 列按鈕 -->
+          <div class="action-button">
+            <i class="pi pi-list" (click)="formatAsList(newPostContent)"></i>
+          </div>
+
+          <!-- 表情符號按鈕和選擇器 -->
+          <div class="action-button emoji-container">
+            <i class="pi pi-face-smile" (click)="toggleEmojiPicker()"></i>
+            <!-- Emoji 選擇器 -->
+            <div *ngIf="showEmojiPicker" class="emoji-picker-wrapper">
+              <emoji-mart
+                [style]="{ width: '320px' }"
+                [showPreview]="false"
+                [isNative]="true"
+                (emojiSelect)="onEmojiSelect($event)"
+              ></emoji-mart>
+            </div>
+          </div>
+
+          <!-- 相機按鈕 -->
+          <div class="action-button">
+            <i class="pi pi-camera" (click)="openCamera()"></i>
+          </div>
+
+          <!-- 位置標記按鈕 -->
+          <div class="action-button">
+            <i class="pi pi-map-marker" (click)="getLocation()"></i>
+          </div>
+
+          <!-- Demo 按鈕 -->
+          <div class="action-button demo-button" (click)="sendRandomComment()">
+            <i class="pi pi-bolt"></i>
+          </div>
+        </div>
+
+        <!-- 右側功能按鈕 -->
+        <div class="action-buttons-right">
+          <!-- 發送按鈕 -->
+          <button
+            class="post-button"
+            [disabled]="!newPostContent.trim()"
+            (click)="submitPost()">
+            <i class="pi pi-send"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 文章列表區域 -->
+    <div class="posts-feed">
+      <div *ngFor="let post of posts" class="post-card">
+        <!-- 貼文頭部 -->
+        <div class="post-header">
+          <img [src]="post.userAvatar" alt="頭像" class="user-avatar">
+          <div class="post-info">
+            <div class="user-info">
+              <span class="username">{{ post.fUserName }}</span>
+              <span class="post-time">{{ formatDate(post.fCreatedTime) }}</span>
+            </div>
+            <div class="post-content">
+              {{ post.fPostContent }}
+              <img *ngIf="post.selectedImage"
+                   [src]="post.selectedImage"
+                   alt="Post image"
+                   class="post-image"
+                   (error)="handleImageError($event)">
+            </div>
+          </div>
+        </div>
+
+        <!-- 互動按鈕區 -->
+        <div class="post-actions">
+          <div class="action-item like-action" [class.active]="post.isLiked" (click)="toggleLike(post)">
+            <i class="pi" [ngClass]="post.isLiked ? 'pi-heart-fill' : 'pi-heart'"></i>
+            <span>{{ post.fLikes }}</span>
+          </div>
+          <div class="action-item comment-action" (click)="showComments(post)">
+            <i class="pi pi-comments"></i>
+            <span>{{ post.comments || 0 }}</span>
+          </div>
+          <div class="action-item share-action" (click)="sharePost(post)">
+            <i class="pi pi-share-alt"></i>
+            <span>{{ post.reposts || 0 }}</span>
+          </div>
+
+          <!-- 編輯和刪除按鈕 -->
+          <div class="action-item edit-action"
+               *ngIf="isCurrentUser(post.fMemberId)"
+               (click)="editPost(post)">
+            <i class="pi pi-pencil"></i>
+          </div>
+          <div class="action-item delete-action"
+               *ngIf="isCurrentUser(post.fMemberId)"
+               (click)="deletePost(post)">
+            <i class="pi pi-trash"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 右側邊欄 - 財經資訊區 -->
+  <div class="right-sidebar">
+    <div class="financial-data">
+      <!-- 載入中提示 -->
+      <div *ngIf="isLoading" class="loading">
+        載入中...
+      </div>
+
+      <!-- 錯誤提示 -->
+      <div *ngIf="error" class="error">
+        {{error}}
+      </div>
+
+      <!-- 財經資訊內容 -->
+      <ng-container *ngIf="!isLoading && !error">
+        <!-- 股市資訊區塊 -->
+        <div class="stock-ticker">
+          <h3>市場動態</h3>
+          <!-- 股票列表 -->
+          <div class="stock-list">
+            <div *ngFor="let stock of stockData" class="stock-item">
+              <div class="stock-info">
+                <span class="stock-symbol">{{stock.symbol}}</span>
+                <span class="stock-name">{{stock.shortName || ''}}</span>
+              </div>
+              <div class="stock-price"
+                   [ngClass]="{'up': stock.regularMarketChange && stock.regularMarketChange > 0, 'down': stock.regularMarketChange && stock.regularMarketChange < 0}">
+                <span class="current-price">{{stock.regularMarketPrice || 0 | number:'1.2-2'}}</span>
+                <span class="price-change">
+                  {{formatPriceChange(stock.regularMarketChange || 0)}}
+                  ({{stock.regularMarketChangePercent || 0 | number:'1.2-2'}}%)
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 新聞區塊 -->
+        <div class="news-section">
+          <h3>財經新聞</h3>
+          <!-- 新聞列表 -->
+          <div class="news-list">
+            <div *ngFor="let news of newsData" class="news-item">
+              <!-- 新聞縮圖 -->
+              <div class="news-image" *ngIf="news.thumbnail && news.thumbnail.resolutions.length">
+                <img [src]="news.thumbnail.resolutions[0].url" [alt]="news.title">
+              </div>
+              <!-- 新聞內容 -->
+              <div class="news-content">
+                <h4 class="news-title">
+                  <a [href]="news.link" target="_blank">{{news.title}}</a>
+                </h4>
+                <div class="news-meta">
+                  <span class="news-publisher">{{news.publisher}}</span>
+                  <span class="news-time">{{formatDate(news.providerPublishTime || 0)}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<!-- 表情符號選擇器 -->
+<div *ngIf="showEmojiPicker">
+  <!-- 遮罩層 -->
+  <div class="emoji-picker-backdrop" (click)="showEmojiPicker = false"></div>
+  <!-- Emoji 選擇器 -->
+  <div class="emoji-picker-wrapper">
+    <emoji-mart
+      [darkMode]="false"
+      [showPreview]="false"
+      [isNative]="true"
+      (emojiSelect)="onEmojiSelect($event)"
+    ></emoji-mart>
+  </div>
+</div>
+
+<!-- 評論對話框 -->
+<p-dialog
+  [(visible)]="showCommentsModal"
+  [modal]="true"
+  [style]="{width: '500px'}"
+  [draggable]="false"
+  [resizable]="false"
+  header="評論"
+  [showHeader]="true"
+  styleClass="custom-dialog">
+  <ng-template pTemplate="header">
+    <div class="dialog-header">
+      <span class="dialog-title">評論</span>
+      <button class="close-button" (click)="showCommentsModal = false">
+        <i class="pi pi-times"></i>
+      </button>
+    </div>
+  </ng-template>
+  <!-- 評論列表 -->
+  <div class="comments-list">
+    <div *ngFor="let comment of selectedPost?.commentList" class="comment-item">
+      <div class="comment-header">
+        <img [src]="comment.userAvatar" alt="評論者頭像" class="commenter-avatar">
+        <div class="comment-info">
+          <span class="commenter-name">{{ comment.fMemberId }}</span>
+          <span class="comment-time">{{ formatDate(comment.fCratedAT) }}</span>
+        </div>
+      </div>
+      <div class="comment-text">{{ comment.fContent }}</div>
+    </div>
+  </div>
+
+  <!-- 評論對話框中的輸入區域 -->
+  <div class="comment-input-area">
+    <textarea
+      [(ngModel)]="newCommentContent"
+      pInputTextarea
+      [rows]="3"
+      placeholder="寫下你的評論..."
+      class="comment-textarea">
+    </textarea>
+    <button
+      class="comment-submit-btn"
+      [disabled]="!newCommentContent.trim()"
+      (click)="submitComment()">
+      <i class="pi pi-send"></i>
+    </button>
+  </div>
+</p-dialog>
+
+<!-- 編輯對話框 -->
+<p-dialog [(visible)]="editDialogVisible"
+          [style]="{width: '600px'}"
+          [modal]="true"
+          [showHeader]="false"
+          [draggable]="false"
+          [resizable]="false"
+          styleClass="twitter-edit-dialog">
+  <div class="dialog-content">
+    <!-- 頂部導航列 -->
+    <div class="dialog-header">
+      <div class="header-actions">
+        <button class="close-btn" (click)="cancelEdit()">
+          <i class="pi pi-times"></i>
+        </button>
+        <span class="header-title">編輯貼文</span>
+      </div>
+      <button class="save-btn"
+              [disabled]="!editingContent.trim()"
+              (click)="saveEdit()">
+        <i class="pi pi-send"></i>
+      </button>
+    </div>
+
+    <!-- 編輯區域 -->
+    <div class="edit-area">
+      <div class="user-info">
+        <img [src]="editingPost?.userAvatar" alt="用戶頭像" class="user-avatar">
+        <div class="post-info">
+          <span class="username">{{editingPost?.fUserName}}</span>
+        </div>
+      </div>
+      <textarea [(ngModel)]="editingContent"
+                placeholder="有什麼新想法？"
+                class="edit-input"
+                autosize
+                [rows]="5">
+      </textarea>
+    </div>
+  </div>
+</p-dialog>

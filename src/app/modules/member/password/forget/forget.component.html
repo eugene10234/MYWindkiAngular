@@ -1,0 +1,49 @@
+<div class="forget-container">
+  <div class="forget-box">
+    <div class="header-container">
+      <h2>發送重設密碼信件</h2>
+      <button class="demo-button" (click)="onDemoClick()">
+        Demo
+      </button>
+    </div>
+    <form (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label for="account">帳號</label>
+        <input
+          type="text"
+          id="account"
+          [(ngModel)]="account"
+          name="account"
+          placeholder="請輸入您的帳號"
+          [disabled]="isLoading">
+      </div>
+
+      <div class="form-group">
+        <label for="email">電子郵件</label>
+        <input
+          type="email"
+          id="email"
+          [(ngModel)]="email"
+          name="email"
+          placeholder="請輸入您的電子郵件"
+          [disabled]="isLoading">
+      </div>
+
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
+      <div *ngIf="successMessage" class="success-message">
+        {{ successMessage }}
+      </div>
+
+      <button type="submit" [disabled]="isLoading">
+        <span *ngIf="!isLoading">送出</span>
+        <span *ngIf="isLoading">處理中...</span>
+      </button>
+    </form>
+  </div>
+</div>
+
+

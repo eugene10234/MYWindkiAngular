@@ -1,0 +1,75 @@
+<div class="layout-container">
+  <div class="left-sidebar">
+    <nav class="nav-menu">
+      <div class="nav-item" [routerLink]="['/social/main']" routerLinkActive="active">
+        <i class="pi pi-home"></i>
+        <span>Home</span>
+      </div>
+      <div class="nav-item" [routerLink]="['/social/search']" routerLinkActive="active">
+        <i class="pi pi-search"></i>
+        <span>Explore</span>
+      </div>
+      <div class="nav-item" [routerLink]="['/social/message']" routerLinkActive="active">
+        <i class="pi pi-envelope"></i>
+        <span>Messages</span>
+      </div>
+      <div class="nav-item" [routerLink]="['/social/person']" routerLinkActive="active">
+        <i class="pi pi-user"></i>
+        <span>個人資料</span>
+      </div>
+    </nav>
+  </div>
+
+  <div class="main-content">
+    <div class="search-header">
+      <div class="search-input-wrapper">
+        <i class="pi pi-search"></i>
+        <input
+          type="text"
+          [(ngModel)]="searchQuery"
+          (ngModelChange)="onSearchChange()"
+          placeholder="搜尋文章或評論"
+          class="search-input"
+        >
+        <i class="pi pi-times"
+           *ngIf="searchQuery"
+           (click)="clearSearch()">
+        </i>
+      </div>
+    </div>
+
+    <div class="posts-feed">
+      <div class="post-container" *ngFor="let post of searchResults">
+        <div class="post-header">
+          <img [src]="post.userAvatar" [alt]="post.fUserName" class="avatar">
+          <div class="user-info">
+            <div class="username">{{post.fUserName}}</div>
+            <div class="timestamp">{{formatDate(post.fCreatedTime)}}</div>
+          </div>
+        </div>
+
+        <div class="post-content">{{post.fPostContent}}</div>
+
+        <div class="post-actions">
+          <div class="action-button" (click)="toggleLike(post)">
+            <i class="pi pi-heart" [class.filled]="post.isLiked"></i>
+            <span class="count">{{post.fLikes}}</span>
+          </div>
+          <div class="action-button" (click)="showComments(post)">
+            <i class="pi pi-comments"></i>
+            <span class="count">{{post.comments}}</span>
+          </div>
+          <div class="action-button" (click)="sharePost(post)">
+            <i class="pi pi-share-alt"></i>
+            <span class="count">{{post.reposts}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="no-results" *ngIf="searchQuery && searchResults.length === 0">
+      <i class="pi pi-info-circle"></i>
+      <p>找不到相關結果</p>
+    </div>
+  </div>
+</div>

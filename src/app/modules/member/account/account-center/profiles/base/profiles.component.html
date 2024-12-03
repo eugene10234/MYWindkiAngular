@@ -1,0 +1,84 @@
+<div class="profile-form">
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <div class="form-content">
+      <!-- 用戶名 -->
+      <div class="form-item">
+        <div class="label">用戶名</div>
+        <div class="value">{{username}}</div>
+      </div>
+
+      <!-- 姓名 -->
+      <div class="form-row">
+        <div class="form-item half">
+          <div class="label">姓氏</div>
+          <input type="text" pInputText formControlName="firstName" placeholder="請輸入姓氏" />
+          <small class="error-message" *ngIf="profileForm.get('firstName')?.errors?.['required'] &&
+                 profileForm.get('firstName')?.touched">
+            請輸入姓氏
+          </small>
+        </div>
+        <div class="form-item half">
+          <div class="label">名字</div>
+          <input type="text" pInputText formControlName="lastName" placeholder="請輸入名字" />
+          <small class="error-message" *ngIf="profileForm.get('lastName')?.errors?.['required'] &&
+                 profileForm.get('lastName')?.touched">
+            請輸入名字
+          </small>
+        </div>
+      </div>
+
+      <!-- 性別 -->
+      <div class="form-item">
+        <div class="label">性別</div>
+        <div class="radio-group">
+          <div class="radio-item">
+            <p-radioButton name="gender" value="M" formControlName="gender" inputId="gender1"></p-radioButton>
+            <label for="gender1">男</label>
+          </div>
+          <div class="radio-item">
+            <p-radioButton name="gender" value="F" formControlName="gender" inputId="gender2"></p-radioButton>
+            <label for="gender2">女</label>
+          </div>
+          <div class="radio-item">
+            <p-radioButton name="gender" value="U" formControlName="gender" inputId="gender3"></p-radioButton>
+            <label for="gender3">保密</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- 生日 -->
+      <div class="form-item">
+        <div class="label">生日</div>
+        <p-calendar formControlName="birthDate"
+                   [showIcon]="true"
+                   dateFormat="yy/mm/dd"
+                   [readonlyInput]="true"
+                   placeholder="請選擇日期">
+        </p-calendar>
+        <small class="error-message" *ngIf="profileForm.get('birthDate')?.errors?.['required'] &&
+               profileForm.get('birthDate')?.touched">
+          請選擇生日
+        </small>
+      </div>
+
+      <!-- 地區 -->
+      <div class="form-item">
+        <div class="label">地區</div>
+        <input type="text" pInputText formControlName="districtId" placeholder="請輸入地區編號" />
+        <small class="error-message" *ngIf="profileForm.get('districtId')?.errors?.['required'] &&
+               profileForm.get('districtId')?.touched">
+          請輸入地區編號
+        </small>
+      </div>
+
+      <!-- 保存按鈕 -->
+      <div class="button-wrapper">
+        <button pButton type="submit"
+                label="保存"
+                class="save-button"
+                [disabled]="!profileForm.valid || profileForm.pristine">
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

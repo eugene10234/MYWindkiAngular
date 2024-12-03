@@ -1,0 +1,25 @@
+<div class="order-container">
+  <h2>模擬下單頁面</h2>
+
+  <label>會員編號：</label>
+  <input type="text" [value]="memberId" readonly />
+
+  <label>股票代號：</label>
+  <input type="text" [value]="symbol" readonly />
+
+  <label>股票名稱：</label>
+  <input type="text" [value]="stockName" readonly />
+
+  <label>最新價：</label>
+  <input type="text" [value]="lastPrice" readonly />
+
+  <label for="quantity">數量：</label>
+  <input style="color: #333;" id="quantity" type="number" [(ngModel)]="quantity" min="1" />
+
+  <div class="button-group">
+    <button (click)="placeOrder()">確認下單</button>
+    <button (click)="goBack()">回上一頁</button>
+    <button (click)="goToMarketIndex()">回到投資平台首頁</button>
+  </div>
+</div>
+

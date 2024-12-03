@@ -1,0 +1,36 @@
+<div class="container">
+  <h1>股票查詢系統</h1>
+
+  <!-- 股票代碼輸入框 -->
+  <input
+    type="text"
+    [(ngModel)]="stockSymbol"
+    placeholder="輸入股票代碼"
+  />
+  <button (click)="searchStock()">搜尋</button>
+
+  <!-- 錯誤訊息顯示 -->
+  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+
+  <!-- 顯示股票資料 -->
+  <div *ngIf="stockData" class="stock-data">
+    <p><span class="section-title">日期:</span> {{ stockData.date }}</p>
+    <p><span class="section-title">類型:</span> {{ stockData.type }}</p>
+    <p><span class="section-title">交易所:</span> {{ stockData.exchange }}</p>
+    <p><span class="section-title">市場別:</span> {{ stockData.market }}</p>
+    <p><span class="section-title">股票代碼:</span> {{ stockData.symbol }}</p>
+    <p><span class="section-title">股票簡稱:</span> {{ stockData.name }}</p>
+    <p><span class="section-title">今日參考價:</span> {{ stockData.referencePrice }}</p>
+    <p><span class="section-title">昨日收盤價:</span> {{ stockData.previousClose }}</p>
+    <p><span class="section-title">開盤價:</span> {{ stockData.openPrice }}</p>
+    <p><span class="section-title">最高價:</span> {{ stockData.highPrice }}</p>
+    <p><span class="section-title">最低價:</span> {{ stockData.lowPrice }}</p>
+    <p><span class="section-title">收盤價:</span> {{ stockData.closePrice }}</p>
+    <p><span class="section-title">當日成交均價:</span> {{ stockData.avgPrice }}</p>
+    <p><span class="section-title">最後一筆成交漲跌:</span> {{ stockData.change }}</p>
+    <p><span class="section-title">最後一筆成交漲跌幅:</span> {{ stockData.changePercent }}%</p>
+    <p><span class="section-title">當日振幅:</span> {{ stockData.amplitude }}%</p>
+    <p><span class="section-title">最後一筆成交價:</span> {{ stockData.lastPrice }}</p>
+    <p><span class="section-title">最後一筆成交數量:</span> {{ stockData.lastSize }}</p>
+  </div>
+</div>

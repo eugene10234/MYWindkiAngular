@@ -1,0 +1,15 @@
+
+  <!-- 主要內容區 -->
+  <div class="main-content">
+    <app-profile-navbar></app-profile-navbar>
+
+    <ng-container [ngSwitch]="activeTab">
+      <app-profiles *ngSwitchCase="'base'"></app-profiles>
+      <app-contact *ngSwitchCase="'contact'"></app-contact>
+      <app-edu *ngSwitchCase="'edu'"></app-edu>
+      <app-work *ngSwitchCase="'work'"></app-work>
+      <app-info *ngSwitchCase="'info'"></app-info>
+    </ng-container>
+
+  </div>
+

@@ -1,0 +1,27 @@
+<!-- 左側選單 -->
+<div class="side-menu">
+  <h2 class="menu-header">設置</h2>
+  <ul class="menu-items">
+    <li [ngClass]="{'active': activeTab === 'avatar'}">
+      <a routerLink="/member/account/avatar" (click)="setActiveTab('avatar')">修改頭像</a>
+    </li>
+    <li [ngClass]="{'active': activeTab === 'profile'}">
+      <a routerLink="/member/account/profile">個人資料</a>
+    </li>
+    <li [ngClass]="{'active': activeTab === 'credit'}">
+      <a routerLink="/member/account/credit" (click)="setActiveTab('credit')">積分</a>
+    </li>
+    <li [ngClass]="{'active': activeTab === 'usergroup'}">
+      <a routerLink="/member/account/usergroup" (click)="setActiveTab('usergroup')">用戶組</a>
+    </li>
+    <li [ngClass]="{'active': activeTab === 'privacy'}">
+      <a routerLink="/member/account/privacy">隱私篩選</a>
+    </li>
+    <li [ngClass]="{'active': activeTab === 'sendmail'}">
+      <a routerLink="/member/account/sendmail" (click)="setActiveTab('sendmail')">郵件提醒</a>
+    </li>
+    <li [ngClass]="{'active': activeTab === 'password'}">
+      <a routerLink="/member/account/password" (click)="setActiveTab('password')">密碼安全</a>
+    </li>
+  </ul>
+</div>

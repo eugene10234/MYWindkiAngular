@@ -1,0 +1,10 @@
+.page-wrapper {
+  display: flex;
+  min-height: 100vh;
+  background: #fff;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px 40px;
+}

@@ -1,0 +1,32 @@
+<ul class="tab-nav">
+  <li [ngClass]="{'active': activeTab === 'base'}">
+    <a routerLink="/member/account/profile/base" (click)="setActiveTab('base')">
+      <i class="fas fa-user-circle"></i>
+      基本資料
+    </a>
+  </li>
+  <li [ngClass]="{'active': activeTab === 'contact'}">
+    <a routerLink="/member/account/profile/contact" (click)="setActiveTab('contact')">
+      <i class="fas fa-address-book"></i>
+      聯繫方式
+    </a>
+  </li>
+  <li [ngClass]="{'active': activeTab === 'edu'}">
+    <a routerLink="/member/account/profile/edu" (click)="setActiveTab('edu')">
+      <i class="fas fa-graduation-cap"></i>
+      教育情況
+    </a>
+  </li>
+  <li [ngClass]="{'active': activeTab === 'work'}">
+    <a routerLink="/member/account/profile/work" (click)="setActiveTab('work')">
+      <i class="fas fa-briefcase"></i>
+      工作情況
+    </a>
+  </li>
+  <li [ngClass]="{'active': activeTab === 'info'}">
+    <a routerLink="/member/account/profile/info" (click)="setActiveTab('info')">
+      <i class="fas fa-info-circle"></i>
+      個人信息
+    </a>
+  </li>
+</ul>

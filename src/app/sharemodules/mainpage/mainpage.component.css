@@ -1,0 +1,283 @@
+/* .background-wrapper {
+  min-height:100vh;
+  width: 100%;
+  background-image: url('src/assets/helping1/images/about-bg.png') !important;
+} */
+
+
+.background-wrapper {
+  position: relative;
+  min-height: 100vh;  /* 控制整體容器高度 */
+  max-height: 100vh;
+  width: 100vw;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  transform: translateY(-50px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 新增背景圖層 */
+.main-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height:  100vh;     /* 調整為跟 background-wrapper 一樣的高度 */
+  background-image: url('/assets/helping1/images/about-bg.png');
+  background-size:cover;  /* 或者用 'cover' 如果想完全填滿 */
+  background-position: center top;
+  background-repeat: no-repeat;
+  z-index: -1;       /* 確保在最底層 */
+}
+.overlay-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 115vh;
+  background-image: url('/assets/helping1/images/banner-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;  /* 確保圖片在背景之上 */
+}
+.container {
+  text-align: center;
+  padding: 2rem;
+  /* background: rgba(255, 255, 255, 0.9); */
+  border-radius: 15px;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+  position: relative;
+  z-index: 2;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  font-size: 1rem;
+  padding: 0.75rem 2rem;
+  background-color: #00bcd4;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+  background-color: #008ba3;
+}
+
+.shapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+.shape-1 {
+  width: 100px;
+  height: 100px;
+  background: #ffa500;
+  top: 10%;
+  left: 15%;
+}
+
+.shape-2 {
+  width: 150px;
+  height: 150px;
+  background: #8a2be2;
+  bottom: 20%;
+  right: 10%;
+}
+
+.shape-3 {
+  width: 120px;
+  height: 120px;
+  background: #32cd32;
+  bottom: 10%;
+  left: 5%;
+}
+/* 添加新的樣式 */
+.bottom-section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;  /* 設定為視窗高度 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom-overlay-image {
+  position: absolute;
+  bottom:  -210vh;
+  left: 0;
+  width: 130%;
+  height:100%;      /* 設定高度為一個視窗高度 */
+  background-image: url('/assets/helping1/images/footer-bg.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+  transform: translateX(-10%) scale(1.02) ;
+  display: none;  /* 隱藏底部圖片 */
+}
+
+/* 添加浮動圖片樣式 */
+.floating-images {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;  /* 讓圖片不影響點擊事件 */
+}
+
+.float-img {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  /* background-color: rgba(255, 255, 255, 0.1);  */
+  /* border-radius: 10px; */
+  animation: float 6s infinite ease-in-out;
+  background-size: cover;
+  background-position: center;
+  /* box-shadow: 0 4px 15px rgba(0,0,0,0.1); */
+  transform: blur(100px);
+}
+
+.img1 { background-image: url('/assets/helping1/images/background-shape/1.png'); }
+.img2 { background-image: url('/assets/helping1/images/background-shape/2.png'); }
+.img3 { background-image: url('/assets/helping1/images/background-shape/3.png'); }
+.img4 { background-image: url('/assets/helping1/images/background-shape/4.png'); }
+.img5 { background-image: url('/assets/helping1/images/background-shape/5.png'); }
+.img6 { background-image: url('/assets/helping1/images/background-shape/6.png'); }
+.img7 { background-image: url('/assets/helping1/images/background-shape/7.png'); }
+.img8 { background-image: url('/assets/helping1/images/background-shape/8.png'); }
+.img9 { background-image: url('/assets/helping1/images/background-shape/9.png'); }
+/* 為每個圖片設定不同位置和動畫延遲 */
+.img1 {
+  top: 15%;
+  left: 10%;
+  animation-delay: -0.5s;
+
+}
+
+.img2 {
+  top: 25%;
+  right: 15%;
+  animation-delay: -1s;
+
+}
+
+.img3 {
+  top: 45%;
+  left: 15%;
+  animation-delay: -1.5s;
+}
+
+.img4 {
+  top: 62%;
+  right: 25%;
+  animation-delay: -2s;
+}
+
+.img5 {
+  top: 30%;
+  left: 50%;
+  animation-delay: -2.5s;
+}
+
+.img6 {
+  top: 70%;
+  left: 30%;
+  animation-delay: -3s;
+}
+
+.img7 {
+  top: 87%;
+  right: 13%;
+}
+
+/* .img8 {
+  top: 60%;
+  left: 30%;
+  animation-delay: -4s;
+  transform: translateY(-10px) rotate(90deg);
+} */
+
+.img9 {
+  top: 90%;
+  right: 45%;
+  animation-delay: -4.5s;
+}
+
+/* 浮動動畫 */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+  75% {
+    transform: translateY(10px) rotate(-2deg);
+  }
+}
+
+/* 要添加圖片時，只需要為每個 .imgX 添加背景圖 */
+/* 例如：
+.img1 {
+  background-image: url('/path/to/your/image1.jpg');
+}
+*/
+/* 按鈕樣式 */
+.hero-action {
+  margin-top: 2rem;
+}
+.action-button {
+  display: inline-block;
+  padding: 1.2rem 3rem;
+  background-color: #ffffff;
+  color: #686868;
+  text-decoration: none;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.action-button:hover {
+  color: #ffffff  !important;
+  font-size: 1.2rem;
+  background: linear-gradient(135deg, #a0b0f0, #d8ee80);
+
+  border-color: #ffffff;
+  transform: translateY(-2px) scale(1.09);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  cursor: pointer;  /* 添加這行 */
+}

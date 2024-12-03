@@ -1,0 +1,245 @@
+<!-- 主要布局容器 -->
+<div class="layout-container">
+  <!-- 左側邊欄 - 包含主要導航選項 -->
+  <div class="left-sidebar">
+    <!-- 導航菜單 -->
+    <nav class="nav-menu">
+      <!-- 首頁選項 -->
+      <div class="nav-item" [routerLink]="['/social/main']" routerLinkActive="active">
+        <i class="pi pi-home"></i>
+        <span>Home</span>
+      </div>
+      <!-- 探索選項 -->
+      <div class="nav-item" [routerLink]="['/social/search']" routerLinkActive="active">
+        <i class="pi pi-search"></i>
+        <span>Explore</span>
+      </div>
+      <!-- 訊息選項 -->
+      <div class="nav-item" [routerLink]="['/social/message']" routerLinkActive="active">
+        <i class="pi pi-envelope"></i>
+        <span>Messages</span>
+      </div>
+      <!-- 個人資料選項 -->
+      <div class="nav-item" [routerLink]="['/social/person']" routerLinkActive="active">
+        <i class="pi pi-user"></i>
+        <span>個人資料</span>
+      </div>
+    </nav>
+  </div>
+
+  <!-- 在這裡添加 person 頁面的主要內容 -->
+  <div class="main-content">
+    <div class="profile-header">
+      <div class="profile-info">
+        <h2>{{member?.fUserName}}</h2>
+        <p>ID: {{member?.fMemberId}}</p>
+      </div>
+    </div>
+
+    <!-- 標籤列 -->
+    <div class="profile-tabs">
+      <div class="tab-item"
+           [class.active]="activeTab === '個人文章'"
+           (click)="activeTab = '個人文章'">
+        <i class="pi pi-file-edit"></i>
+        <span>個人文章</span>
+      </div>
+      <div class="tab-item"
+           [class.active]="activeTab === '統計資料'"
+           (click)="activeTab = '統計資料'">
+        <i class="pi pi-chart-bar"></i>
+        <span>統計資料</span>
+      </div>
+      <div class="tab-item"
+           [class.active]="activeTab === '投資組合'"
+           (click)="activeTab = '投資組合'">
+        <i class="pi pi-wallet"></i>
+        <span>投資組合</span>
+      </div>
+    </div>
+
+    <!-- 內容區域 -->
+    <div class="tab-content">
+      <!-- 個人文章區域 -->
+      <div *ngIf="activeTab === '個人文章'" class="posts-feed">
+        <div *ngFor="let post of userPosts" class="post-card">
+          <div class="post-header">
+            <img [src]="post.userAvatar" alt="用戶頭像" class="user-avatar">
+            <div class="post-info">
+              <span class="username">{{ post.fUserName }}</span>
+              <span class="post-time">{{ formatDate(post.fCreatedTime) }}</span>
+            </div>
+          </div>
+          <div class="post-content">{{ post.fPostContent }}</div>
+          <div class="post-actions">
+            <div class="action-item like-action" [class.active]="post.isLiked" (click)="toggleLike(post)">
+              <i class="pi" [ngClass]="post.isLiked ? 'pi-heart-fill' : 'pi-heart'"></i>
+              <span>{{ post.fLikes }}</span>
+            </div>
+            <div class="action-item comment-action" (click)="showComments(post)">
+              <i class="pi pi-comments"></i>
+              <span>{{ post.comments || 0 }}</span>
+            </div>
+            <div class="action-item share-action" (click)="sharePost(post)">
+              <i class="pi pi-share-alt"></i>
+              <span>{{ post.reposts || 0 }}</span>
+            </div>
+
+            <!-- 編輯和刪除按鈕 -->
+            <div class="action-item edit-action"
+                 *ngIf="currentUserId === post.fMemberId"
+                 (click)="editPost(post)">
+              <i class="pi pi-pencil"></i>
+            </div>
+            <div class="action-item delete-action"
+                 *ngIf="currentUserId === post.fMemberId"
+                 (click)="deletePost(post)">
+              <i class="pi pi-trash"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 統計資料區域 -->
+      <div *ngIf="activeTab === '統計資料'" class="statistics-section">
+        <div class="statistics-container">
+          <!-- 績效圖表卡片 -->
+          <div class="data-card performance-card">
+            <div class="card-title">
+              <i class="pi pi-chart-line"></i>
+              績效分析
+            </div>
+            <div class="chart-container">
+              <p-chart type="bar" [data]="chartData" [options]="chartOptions"></p-chart>
+            </div>
+            <div class="performance-stats">
+              <div class="stat-item">
+                <div class="label">年度收益</div>
+                <div class="value positive">+42.06%</div>
+              </div>
+              <div class="stat-item">
+                <div class="label">最大獲利</div>
+                <div class="value positive">+13.76%</div>
+              </div>
+              <div class="stat-item">
+                <div class="label">最大虧損</div>
+                <div class="value negative">-5.92%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bottom-cards">
+            <!-- 交易分析卡片 -->
+            <div class="data-card trading-card">
+              <div class="card-title">
+                <i class="pi pi-wallet"></i>
+                交易分析
+              </div>
+              <div class="trading-chart">
+                <p-chart type="doughnut" [data]="tradingData" [options]="tradingOptions"></p-chart>
+              </div>
+              <div class="chart-labels">
+                <div class="label stocks">股票 (89.41%)</div>
+                <div class="label crypto">加密貨幣 (10.59%)</div>
+              </div>
+            </div>
+
+            <!-- 複製者趨勢卡片 -->
+            <div class="data-card followers-card">
+              <div class="card-title">
+                <i class="pi pi-users"></i>
+                複製者趨勢
+              </div>
+              <div class="followers-chart">
+                <p-chart type="line" [data]="followerChartData" [options]="followerChartOptions"></p-chart>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 投資組合區域 -->
+      <div *ngIf="activeTab === '投資組合'" class="portfolio-section">
+        <div class="portfolio-container">
+          <div class="portfolio-table">
+            <!-- 表頭 -->
+            <div class="stock-row header-row">
+              <div class="header-cell">資產</div>
+              <div class="header-cell">類型</div>
+              <div class="header-cell">權重</div>
+              <div class="header-cell">漲跌幅</div>
+              <div class="header-cell">報酬率</div>
+              <div class="header-cell">現價</div>
+              <div class="header-cell">目標價</div>
+            </div>
+
+            <!-- 股票行 -->
+            <div class="stock-row" *ngFor="let stock of portfolioData">
+              <div class="stock-info">
+                <img [src]="stock.icon" [alt]="stock.name" class="stock-icon">
+                <div class="stock-details">
+                  <div class="symbol">{{stock.symbol}}</div>
+                  <div class="name">{{stock.name}}</div>
+                </div>
+              </div>
+              <div class="data-cell type">買入</div>
+              <div class="data-cell">{{stock.investment}}%</div>
+              <div class="data-cell percentage"
+                   [ngClass]="{'positive': stock.profit > 0, 'negative': stock.profit < 0}">
+                {{stock.profit}}%
+              </div>
+              <div class="data-cell percentage"
+                   [ngClass]="{'positive': stock.profitRate > 0, 'negative': stock.profitRate < 0}">
+                {{stock.profitRate}}%
+              </div>
+              <div class="price-cell">
+                <span class="label">賣</span>
+                <span class="value">{{stock.sellPrice}}</span>
+              </div>
+              <div class="price-cell">
+                <span class="label">買</span>
+                <span class="value">{{stock.buyPrice}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 編輯對話框 -->
+<p-dialog [(visible)]="editDialogVisible"
+          [style]="{width: '500px'}"
+          [modal]="true"
+          [showHeader]="false"
+          [draggable]="false"
+          [resizable]="false"
+          styleClass="edit-dialog">
+  <div class="dialog-header">
+    <div class="header-content">
+      <i class="pi pi-pencil"></i>
+      <span>編輯貼文</span>
+    </div>
+    <button class="close-button" (click)="cancelEdit()">
+      <i class="pi pi-times"></i>
+    </button>
+  </div>
+  <div class="edit-content">
+    <textarea [(ngModel)]="editingContent"
+              pInputTextarea
+              [autoResize]="true"
+              [rows]="5"
+              placeholder="編輯您的貼文內容..."
+              class="edit-textarea">
+    </textarea>
+  </div>
+  <div class="dialog-footer">
+    <button class="action-button cancel" (click)="cancelEdit()">
+      取消
+    </button>
+    <button class="action-button save" (click)="saveEdit()">
+      儲存
+    </button>
+  </div>
+</p-dialog>

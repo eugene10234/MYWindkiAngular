@@ -1,0 +1,49 @@
+<div id="all">
+  <div style="clear: both;"></div>
+  <div id="content">
+    <div class="container mt-5 d-flex justify-content-center">
+      <div class="row">
+        <!-- 左方欄位：產品大圖 -->
+        <div class="col-md-4" style="width: 55%;">
+          <img class="img-fluid product-image" [src]="'assets/img/' + product.fImagePath" alt="{{ product.fProductName }}">
+        </div>
+        <!-- 右方欄位：產品詳細資訊 -->
+        <div class="col-md-4 product-details" style="width: 45%; color:white;">
+          <h2 class="product-title">{{ product.fProductName }}</h2>
+          <div class="info-grid">
+            <div class="info-row">
+
+              <span class="label">類別：</span>
+              <span class="content">{{ getCategoryName(product.fProductCategoryId) }}</span>
+            </div>
+            <div class="info-row">
+              <span class="label">贊助商：</span>
+              <span class="content">{{ getSponsorName(product.fSponsorId) }}</span>
+            </div>
+            <div class="info-row description">
+              <span class="label">詳細描述：</span>
+              <textarea class="form-control description-text" rows="5" readonly>{{ product.fDescription }}</textarea>
+            </div>
+            <div class="info-row">
+              <span class="label">已售出：</span>
+              <span class="content">{{ product.fSales }} 件</span>
+            </div>
+            <div class="info-row">
+              <span class="label">庫存：</span>
+              <span class="content">{{ product.fStock }} 件</span>
+            </div>
+            <div class="info-row">
+              <span class="label">需求點數：</span>
+              <span class="content">{{ product.fUnitlHelpPoint }}</span>
+            </div>
+            <div class="info-row">
+              <span class="label">狀態：</span>
+              <span class="content">{{ getStatusName(product.fStatus) }}</span>
+            </div>
+          </div>
+          <button class="btn btn-primary mt-3" (click)="addToCart(product)">放入購物車</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

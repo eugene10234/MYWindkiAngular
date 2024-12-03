@@ -1,0 +1,37 @@
+<div class="usergroup-container">
+  <h2>用戶群組</h2>
+
+  <div class="group-list">
+    <div class="group-item" *ngFor="let group of userGroups">
+      <div class="group-info">
+        <h3>{{ group.name }}</h3>
+        <p class="group-description">{{ group.description }}</p>
+        <div class="group-meta">
+          <span class="member-count">成員數: {{ group.memberCount }}</span>
+          <span class="join-date">加入時間: {{ group.joinDate | date:'yyyy-MM-dd' }}</span>
+        </div>
+      </div>
+      <div class="group-actions">
+        <button class="leave-btn" (click)="leaveGroup(group.id)" *ngIf="group.canLeave">
+          退出群組
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="available-groups" *ngIf="availableGroups.length > 0">
+    <h3>可加入的群組</h3>
+    <div class="group-item" *ngFor="let group of availableGroups">
+      <div class="group-info">
+        <h3>{{ group.name }}</h3>
+        <p class="group-description">{{ group.description }}</p>
+        <span class="member-count">成員數: {{ group.memberCount }}</span>
+      </div>
+      <div class="group-actions">
+        <button class="join-btn" (click)="joinGroup(group.id)">
+          加入群組
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

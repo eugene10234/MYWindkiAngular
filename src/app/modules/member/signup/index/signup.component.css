@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  margin-top: 0vh;
+  width: 100vw;
+  height: 100vh;
+}
+.box {
+  width: 50vw;
+  height: 50vh;
+  background: #5cb85c;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.3s;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-size: 2em; /* 調整字體大小 */
+}
+.box:hover {
+  background: #4cae4c;
+}
+

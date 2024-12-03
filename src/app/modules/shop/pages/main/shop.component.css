@@ -1,0 +1,245 @@
+.navbar {
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.navbar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.navbar-item {
+  padding: 15px 20px;
+}
+
+.navbar-item a {
+  text-decoration: none;
+  color: #0088d2;
+  font-weight: bold;
+}
+
+.navbar-item a:hover {
+  color: #005f99;
+  border-bottom: 2px solid #005f99;
+}
+
+
+
+/*輪播垃圾*/
+
+.carousel-container {
+  width: 100%;
+  max-width: 600px; /* 設置最大寬度 */
+  margin-left: auto;
+  margin-bottom: 30px;
+  margin-top: 60px;
+  height: 400px;
+
+}
+
+.carousel-inner {
+  width: 95%;
+  margin:auto;
+  height: 100%; /* 讓內容填滿容器高度 */
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 保持圖片比例並填滿容器 */
+}
+
+
+.carousel-caption {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  background-color: rgba(0, 0, 0, 0); /* 透明背景 */
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5%; /* 設置控制按鈕容器的寬度 */
+}
+
+.carousel-control-prev {
+  left: 0;
+}
+
+.carousel-control-next {
+  right: 0;
+}
+
+.carousel-inner-container {
+  width: 50%; /* 設置輪播圖片容器的寬度 */
+}
+
+.search-bar-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 2px solid #ccc; /* 邊框顏色 */
+  border-radius: 50px; /* 圓角 */
+  padding: 5px; /* 內邊距 */
+}
+
+.search-bar-container .search-input{
+width: 30%;;
+
+}
+.search-bar-container .form-control {
+  flex: 1;
+  width: 100%; /* 確保輸入框佔滿容器寬度 */
+  color: green; /* 設定文字顏色為綠色 */
+}
+
+.search-bar-container .btn {
+  margin-left: 10px;
+  right: 0; /* 將按鈕定位在輸入框的右側 */
+}
+
+.search-bar-container .search-input {
+  border: 2px solid green; /* 設定邊框粗細為 2px，顏色為綠色 */
+  color: gray; /* 預設文字顏色為灰色 */
+}
+
+.search-bar-container .search-input::placeholder {
+  color: gray; /* 設定 placeholder 文字顏色為灰色 */
+}
+
+.search-bar-container .search-button {
+  border: 2px solid white; /* 設定搜尋按鈕邊框粗細為 2px，顏色為白色 */
+}
+
+.d-flex.flex-column.align-items-center.mt-3 {
+  margin-top: 1rem;
+}
+
+.image-container {
+  width: 100%;
+  height: 155px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* 保持圖片比例不變 */
+}
+
+.add-to-cart {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  border-top: 0px solid #ccc;
+  cursor: pointer;
+}
+
+.col-md-6.col-lg-4.col-xl-3 {
+  width: 25%; /* 設置固定寬度 */
+  height: 380px; /* 設置固定高度 */
+}
+
+.price {
+  position: absolute;
+  bottom: 55px; /* 距離 "加入購物車" 按鈕上方 3px */
+  right: 10px; /* 靠右對齊 */
+  color: #333;
+  font-size: 1.25rem;
+  font-weight:bolder ;
+  padding-right: 30px;
+}
+
+
+.p-4 {
+  padding: 1.5rem;
+}
+
+.item-name {
+  font-size: 1.25rem;
+  line-height: 1.2;
+  white-space: nowrap; /* 防止換行 */
+  overflow: hidden; /* 隱藏超出部分 */
+  text-overflow: ellipsis; /* 使用省略號表示超出部分 */
+}
+
+@media (min-width:2000px) {
+  .hero-header,
+  .page-header {
+      margin-top: 0px !important;
+  }
+}
+
+@media (max-width: 2000px) {
+  .hero-header,
+  .page-header {
+      margin-top: 1px !important;
+  }
+}
+.hero-header {
+margin-top: 2px;
+  background: linear-gradient(rgba(248, 223, 173, 0.1), rgba(248, 223, 173, 0.1)), url(src\assets\img\background.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+.total-items{
+padding-right: 10px;
+padding-top: 5% ;
+}
+
+.sort-controls {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  margin-bottom: 10px;
+}
+
+.sort-controls .btn {
+  padding: 4px 8px;
+  font-size: 12px;
+  line-height: 1.2;
+  transition: all 0.2s ease;
+}
+
+.sort-controls .btn i {
+  margin-right: 4px;
+  font-size: 10px;  /* 稍微調小圖示 */
+}
+
+/* 活動狀態 */
+.sort-controls .btn.active {
+  background-color: #6c757d;
+  color: white;
+  border-color: #6c757d;
+}
+
+/* 懸停效果 */
+.sort-controls .btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* 重置按鈕特別樣式 */
+.sort-controls .btn:last-child {
+  border-left: 1px solid #dee2e6;  /* 加入分隔線 */
+}

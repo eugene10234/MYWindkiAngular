@@ -1,0 +1,36 @@
+<div class="edu-container">
+  <h2>教育背景</h2>
+
+  <div class="edu-list">
+    <div class="edu-item" *ngFor="let edu of educations; let i = index">
+      <div class="edu-content">
+        <div class="form-group">
+          <label>學校名稱</label>
+          <input type="text" [(ngModel)]="edu.school" placeholder="請輸入學校名稱">
+        </div>
+
+        <div class="form-group">
+          <label>科系</label>
+          <input type="text" [(ngModel)]="edu.major" placeholder="請輸入科系">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>入學年份</label>
+            <input type="month" [(ngModel)]="edu.startDate">
+          </div>
+
+          <div class="form-group">
+            <label>畢業年份</label>
+            <input type="month" [(ngModel)]="edu.endDate">
+          </div>
+        </div>
+      </div>
+
+      <button class="delete-btn" (click)="removeEducation(i)">刪除</button>
+    </div>
+  </div>
+
+  <button class="add-btn" (click)="addEducation()">新增教育經歷</button>
+  <button class="save-btn" (click)="saveEducations()">儲存變更</button>
+</div>

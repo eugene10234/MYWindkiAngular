@@ -1,0 +1,651 @@
+// 引入 Remix Icon 字體圖標
+@import 'remixicon/fonts/remixicon.css';
+.page-spacing {
+  padding-top: 110px;
+}
+
+// 主要布局容器
+.layout-container {
+  display: flex;  // 使用 flex 布局
+  background: #f0f2f5;  // Facebook 風格的背景色
+  min-height: calc(100vh - 60px);  // 減去頂部導航的高度
+  gap: 16px;  // 元素間距
+  padding-left: 0;  // 移除左邊距
+}
+
+// 左側導航欄
+.left-sidebar {
+  width: 260px;  // 固定寬度
+  position: sticky;  // 固定位置
+  top: 60px;  // 與頂部導航對齊
+  height: calc(100vh - 60px);  // 視窗高度減去導航高度
+  padding: 8px 0;
+  margin-left: 8px;
+
+  // 側邊欄菜單
+  .sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    // 菜單項目
+    li {
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      margin: 2px 8px;
+      cursor: pointer;
+      border-radius: 6px;
+      color: #65676b;
+      font-size: 15px;
+
+      // 滑鼠懸停效果
+      &:hover {
+        background: #e4e6eb;
+      }
+
+      // 活動狀態
+      &.active {
+        color: #1b74e4;
+        background: #e7f3ff;
+      }
+
+      // 圖標樣式
+      i {
+        margin-right: 12px;
+        font-size: 20px;
+        width: 24px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+// 主要內容區域
+.main-content {
+  flex: 1;  // 彈性佔用剩餘空間
+  max-width: 650px;  // 最大寬度限制
+  padding: 16px 0;
+  margin-left: 32px;
+}
+
+// 創建貼文卡片
+.create-post-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  margin-bottom: 20px;
+
+  // 卡片標題
+  .create-post-title {
+    color: #050505;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 16px 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e4e6eb;
+  }
+
+  // 貼文輸入區域
+  .create-post-input {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+
+    // 頭像佔位符
+    .avatar-placeholder {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #e4e6eb;
+      flex-shrink: 0;
+    }
+
+    // 輸入框
+    .post-input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      font-size: 15px;
+      color: #65676b;
+      padding: 8px;
+
+      &:focus {
+        outline: none;
+      }
+
+      &::placeholder {
+        color: #65676b;
+      }
+    }
+  }
+
+  // 貼文操作按鈕
+  .post-action-buttons {
+    display: flex;
+    gap: 8px;
+    padding-top: 12px;
+    border-top: 1px solid #e4e6eb;
+
+    // 操作按鈕
+    .action-button {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px;
+      border: none;
+      background: #f0f2f5;
+      border-radius: 6px;
+      color: #65676b;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background: #e4e6eb;
+      }
+
+      // 按鈕圖標
+      i {
+        font-size: 18px;
+      }
+
+      // 最後一個按鈕特殊寬度
+      &:last-child {
+        flex: 0 0 40px;
+      }
+    }
+  }
+}
+
+// 手機版響應式設計
+@media (max-width: 768px) {
+  .layout-container {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .left-sidebar {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: white;
+    box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 4px 0;
+
+    .sidebar-menu {
+      display: flex;
+      justify-content: space-around;
+      padding: 0 4px;
+
+      li {
+        flex: 1;
+        padding: 8px 4px;
+        margin: 0 4px;  // 調整手機版的間距
+        font-size: 12px;
+        text-align: center;
+
+        i {
+          margin: 0 0 4px 0;
+          font-size: 20px;
+          display: block;
+        }
+
+        span {
+          display: block;  // 在手機版顯示文字
+          font-size: 11px;
+        }
+      }
+    }
+  }
+
+  .main-content {
+    padding: 8px;  // 減少手機版的內邊距
+    margin-bottom: 60px;  // 為底部導航預留空間
+  }
+
+  .post-actions {
+    .action-btn {
+      padding: 6px 8px;
+      font-size: 13px;
+
+      i {
+        font-size: 16px;
+      }
+    }
+  }
+
+  .create-post-card {
+    margin: 8px;
+
+    .post-action-buttons {
+      .action-button {
+        font-size: 12px;
+        padding: 6px;
+
+        i {
+          font-size: 16px;
+        }
+
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+// 平板響應式設計
+@media (min-width: 769px) and (max-width: 1024px) {
+  .left-sidebar {
+    width: 240px;  // 調整平板版的寬度
+
+    .sidebar-menu li {
+      font-size: 14px;
+      padding: 8px 12px;
+
+      i {
+        font-size: 20px;
+        margin-right: 12px;
+      }
+    }
+  }
+
+  .main-content {
+    max-width: 600px;
+    padding: 12px;
+  }
+}
+
+// 評論區域
+.comments-section {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #e4e6eb;
+
+  .comment-input {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+
+    .avatar-placeholder {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #e4e6eb;
+      flex-shrink: 0;
+    }
+
+    input {
+      flex: 1;
+      border: none;
+      background: #f0f2f5;
+      border-radius: 20px;
+      padding: 8px 12px;
+      font-size: 14px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .comment {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+
+    .avatar-placeholder {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #e4e6eb;
+      flex-shrink: 0;
+    }
+
+    .comment-content {
+      background: #f0f2f5;
+      border-radius: 12px;
+      padding: 8px 12px;
+
+      .comment-user {
+        font-weight: 600;
+        font-size: 13px;
+      }
+
+      .comment-text {
+        font-size: 14px;
+        margin: 2px 0;
+      }
+
+      .comment-actions {
+        margin-top: 4px;
+        font-size: 12px;
+        color: #65676b;
+
+        span {
+          margin-right: 12px;
+          cursor: pointer;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
+
+// 貼文卡片
+.post-card {
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;  // 減少卡片間的間距
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+
+  .post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+
+    .user-info {
+      display: flex;
+      gap: 12px;
+
+      .avatar-circle {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #e4e6eb;
+      }
+
+      .user-details {
+        display: flex;
+        flex-direction: column;
+
+        .username {
+          font-weight: 600;
+          color: #050505;
+          font-size: 15px;
+        }
+
+        .post-type {
+          color: #65676b;
+          font-size: 13px;
+        }
+
+        .post-time {
+          color: #65676b;
+          font-size: 13px;
+          margin-top: 2px;
+        }
+      }
+    }
+
+    .more-options {
+      background: none;
+      border: none;
+      color: #65676b;
+      font-size: 20px;
+      padding: 4px 8px;
+      cursor: pointer;
+      border-radius: 4px;
+
+      &:hover {
+        background: #f0f2f5;
+      }
+    }
+  }
+
+  .post-content {
+    color: #050505;
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  .post-actions {
+    display: flex;
+    gap: 4px;
+    padding: 4px 0;
+    border-top: 1px solid #ced0d4;
+    border-bottom: 1px solid #ced0d4;
+    margin: 8px 0;
+
+    .action-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 6px 0;
+      background: none;
+      border: none;
+      color: #65676b;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 4px;
+
+      &:hover {
+        background: #f0f2f5;
+      }
+
+      i {
+        font-size: 16px;
+      }
+
+      span {
+        font-weight: 500;
+      }
+    }
+  }
+
+  .comment-input {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+
+    .avatar-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #e4e6eb;
+      flex-shrink: 0;
+    }
+
+    input {
+      flex: 1;
+      border: none;
+      background: #f0f2f5;
+      border-radius: 20px;
+      padding: 8px 12px;
+      font-size: 14px;
+      color: #65676b;
+
+      &::placeholder {
+        color: #8a8d91;
+      }
+
+      &:focus {
+        outline: none;
+        background: #e4e6eb;
+      }
+    }
+  }
+}
+
+// 手機版響應式設計
+@media (max-width: 768px) {
+  .post-card {
+    margin: 8px;
+    padding: 12px;
+
+    .post-header {
+      .user-info {
+        .avatar-circle {
+          width: 36px;
+          height: 36px;
+        }
+
+        .user-details {
+          .username {
+            font-size: 14px;
+          }
+
+          .post-type,
+          .post-time {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+
+    .post-content {
+      font-size: 14px;
+    }
+
+    .post-actions {
+      .action-btn {
+        font-size: 13px;
+
+        i {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}
+
+// 大螢幕響應式設計
+@media (min-width: 1025px) {
+  .layout-container {
+    padding-left: 16px;  // 為大螢幕添加左邊距
+  }
+}
+
+// 右側邊欄
+.right-sidebar {
+  width: 500px;
+  padding: 16px;
+  position: sticky;
+  top: 60px;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+
+  // 股票行情區
+  .stock-ticker {
+    background: white;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+
+    .stock-list {
+      .stock-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid #eee;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .stock-info {
+          .stock-symbol {
+            font-weight: 600;
+            margin-right: 8px;
+          }
+
+          .stock-name {
+            color: #666;
+            font-size: 0.9em;
+          }
+        }
+
+        .stock-price {
+          text-align: right;
+
+          &.up {
+            color: #4caf50;
+          }
+
+          &.down {
+            color: #f44336;
+          }
+
+          .current-price {
+            font-weight: 600;
+            margin-right: 8px;
+          }
+        }
+      }
+    }
+  }
+
+  // 新聞區域
+  .news-section {
+    background: white;
+    border-radius: 8px;
+    padding: 16px;
+
+    .news-list {
+      .news-item {
+        display: flex;
+        gap: 16px;
+        padding: 16px 0;
+        border-bottom: 1px solid #eee;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .news-image {
+          flex: 0 0 120px;
+
+          img {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 4px;
+          }
+        }
+
+        .news-content {
+          flex: 1;
+
+          .news-title {
+            margin: 0 0 8px 0;
+            font-size: 1em;
+
+            a {
+              color: inherit;
+              text-decoration: none;
+
+              &:hover {
+                color: #1877f2;
+              }
+            }
+          }
+
+          .news-meta {
+            font-size: 0.9em;
+            color: #666;
+
+            .news-publisher {
+              margin-right: 8px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

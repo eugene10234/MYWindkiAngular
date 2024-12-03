@@ -1,0 +1,39 @@
+<div class="reset-container">
+  <div class="reset-card">
+    <div class="header-container">
+      <h2>重設密碼</h2>
+      <button class="demo-button" (click)="onDemoClick()">
+        Demo
+      </button>
+    </div>
+    <p class="description">請輸入您的新密碼</p>
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="input-group">
+        <input
+          type="password"
+          [(ngModel)]="newPassword"
+          name="newPassword"
+          placeholder="新密碼"
+          required>
+        <span class="input-hint">密碼長度至少8位，需包含英文和數字</span>
+      </div>
+
+      <div class="input-group">
+        <input
+          type="password"
+          [(ngModel)]="confirmPassword"
+          name="confirmPassword"
+          placeholder="確認新密碼"
+          required>
+      </div>
+
+      <button type="submit" [disabled]="!newPassword || !confirmPassword">
+        <span *ngIf="!isLoading">確認重設</span>
+        <span *ngIf="isLoading">處理中...</span>
+      </button>
+    </form>
+
+    <div class="message error" *ngIf="errorMessage">{{ errorMessage }}</div>
+  </div>
+</div>

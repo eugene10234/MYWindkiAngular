@@ -1,0 +1,53 @@
+.order-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  color: #333;
+}
+
+label {
+  font-size: 16px;
+  color: #333;
+  margin-right: 10px;
+}
+
+input[type="text"][readonly] {
+  background-color: #f2f2f2; /* 淺灰色背景表示為唯讀 */
+  color: #666;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  width: 200px;
+  margin-bottom: 10px;
+}
+
+input[type="number"] {
+  width: 100px;
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #333;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.button-group {
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #FF8C00;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-right: 10px;
+}
+
+button:hover {
+  background-color: #FF6A00;
+}

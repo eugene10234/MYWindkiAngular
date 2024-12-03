@@ -1,0 +1,73 @@
+<div class="privacy-container">
+  <h2>隱私設定</h2>
+
+  <div class="privacy-settings">
+    <div class="setting-item">
+      <label class="switch">
+        <input type="checkbox" [(ngModel)]="privacySettings.profileVisible">
+        <span class="slider"></span>
+      </label>
+      <div class="setting-info">
+        <span class="setting-text">公開個人資料</span>
+        <span class="setting-desc">允許其他用戶查看您的基本資料</span>
+      </div>
+    </div>
+
+    <div class="setting-item">
+      <label class="switch">
+        <input type="checkbox" [(ngModel)]="privacySettings.emailVisible">
+        <span class="slider"></span>
+      </label>
+      <div class="setting-info">
+        <span class="setting-text">顯示電子郵件</span>
+        <span class="setting-desc">在個人資料中顯示您的電子郵件地址</span>
+      </div>
+    </div>
+
+    <div class="setting-item">
+      <label class="switch">
+        <input type="checkbox" [(ngModel)]="privacySettings.phoneVisible">
+        <span class="slider"></span>
+      </label>
+      <div class="setting-info">
+        <span class="setting-text">顯示手機號碼</span>
+        <span class="setting-desc">在個人資料中顯示您的手機號碼</span>
+      </div>
+    </div>
+
+    <div class="setting-item">
+      <label class="switch">
+        <input type="checkbox" [(ngModel)]="privacySettings.birthdayVisible">
+        <span class="slider"></span>
+      </label>
+      <div class="setting-info">
+        <span class="setting-text">顯示生日資訊</span>
+        <span class="setting-desc">在個人資料中顯示您的生日</span>
+      </div>
+    </div>
+
+    <div class="setting-item">
+      <label class="switch">
+        <input type="checkbox" [(ngModel)]="privacySettings.educationVisible">
+        <span class="slider"></span>
+      </label>
+      <div class="setting-info">
+        <span class="setting-text">顯示教育背景</span>
+        <span class="setting-desc">在個人資料中顯示您的學歷資訊</span>
+      </div>
+    </div>
+
+    <div class="setting-item">
+      <label class="switch">
+        <input type="checkbox" [(ngModel)]="privacySettings.workVisible">
+        <span class="slider"></span>
+      </label>
+      <div class="setting-info">
+        <span class="setting-text">顯示工作經歷</span>
+        <span class="setting-desc">在個人資料中顯示您的工作經驗</span>
+      </div>
+    </div>
+
+    <button class="save-btn" (click)="savePrivacySettings()">儲存設定</button>
+  </div>
+</div>

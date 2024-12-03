@@ -1,0 +1,37 @@
+<div class="credit-container">
+  <h2>信用點數</h2>
+
+  <div class="credit-summary">
+    <div class="credit-balance">
+      <span class="balance-label">目前點數</span>
+      <span class="balance-amount">{{ creditBalance }}</span>
+    </div>
+
+    <div class="credit-actions">
+      <button class="action-btn" (click)="showPurchaseDialog()">
+        <i class="fas fa-plus-circle"></i>
+        購買點數
+      </button>
+      <button class="action-btn" (click)="showTransferDialog()">
+        <i class="fas fa-exchange-alt"></i>
+        轉讓點數
+      </button>
+    </div>
+  </div>
+
+  <div class="credit-history">
+    <h3>交易紀錄</h3>
+    <div class="history-list">
+      <div class="history-item" *ngFor="let record of transactionHistory">
+        <div class="transaction-info">
+          <span class="transaction-type" [class.income]="record.type === 'income'"
+                                      [class.expense]="record.type === 'expense'">
+            {{ record.type === 'income' ? '+' : '-' }} {{ record.amount }}
+          </span>
+          <span class="transaction-description">{{ record.description }}</span>
+        </div>
+        <span class="transaction-date">{{ record.date | date:'yyyy-MM-dd HH:mm' }}</span>
+      </div>
+    </div>
+  </div>
+</div>

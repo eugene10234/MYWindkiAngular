@@ -1,0 +1,44 @@
+<body class="delayed">
+  <div class="container">
+    <div class="header">
+      <button class="btn-back" onclick="window.history.back();">回上頁</button>
+      <div class="title">發佈求助</div>
+    </div>
+
+    <div class="content-section">
+      <div class="left-section">
+        <div class="form-section">
+          <div class="list-title">您的清單</div>
+          <div class="date">📅 {{getCurrentDate()}}</div>
+        </div>
+
+        <div class="help-image-card">
+          <img [src]="getHelpClassImage()" [alt]="getDisplayData().helpClass">
+        </div>
+      </div>
+
+      <div class="right-section">
+        <div class="profile-card">
+          <div class="profile-info">
+            <div class="profile-name">
+              📍 位於 {{getDisplayData().districtID}} {{getDisplayData().name}}
+            </div>
+            <div class="help-class-tag">{{getDisplayData().helpClass}}</div>
+            <!-- <div class="distance-info">🚶‍♂️ 距離您最近約2分鐘路程</div>
+            <div class="rating">⭐ 3.68 <span class="rating-count">(70則助人評價)</span></div> -->
+          </div>
+        </div>
+
+        <div class="profile-content">
+          求助訊息：{{getDisplayData().content}}
+        </div>
+
+        <div class="total-points">
+          {{getDisplayData().points}}
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-submit" (click)="makeSure()">確定發佈？</button>
+  </div>
+</body>

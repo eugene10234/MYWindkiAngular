@@ -1,0 +1,131 @@
+<div class="container mt-5">
+  <h2 class="mb-4">購物車</h2>
+
+  <!-- 錯誤訊息 -->
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <!-- 成功訊息 -->
+  <div *ngIf="orderSuccess" class="alert alert-success order-success-container">
+    <div class="order-success-content">
+      <h2 class="success-title animate__animated animate__bounceIn">
+        <i class="fas fa-heart heart-icon"></i>
+        訂單建立成功！感恩大德！祝您有愉快的一天！
+        <i class="fas fa-heart heart-icon"></i>
+      </h2>
+
+      <div *ngIf="orderDetails" class="order-details-container animate__animated animate__fadeIn">
+        <div class="order-details">
+          <div class="order-header">
+            <i class="fas fa-check-circle success-icon"></i>
+            <h3>訂單詳細資訊</h3>
+          </div>
+
+          <div class="order-info">
+            <div class="info-row">
+              <span class="info-label">訂單編號</span>
+              <span class="info-value">{{ orderDetails.fOrderId }}</span>
+            </div>
+
+            <div class="info-row">
+              <span class="info-label">會員帳號</span>
+              <span class="info-value">{{ userAccount }}</span>
+            </div>
+
+            <div class="info-row">
+              <span class="info-label">總點數</span>
+              <span class="info-value highlight">{{ orderDetails.fTotalHelpPoint }} 點</span>
+            </div>
+
+            <div class="info-row">
+              <span class="info-label">訂單狀態</span>
+              <span class="info-value status-badge">{{ getOrderStatusText(orderDetails.fStatus) }}</span>
+            </div>
+
+            <div class="info-row">
+              <span class="info-label">訂單時間</span>
+              <span class="info-value">{{ orderDetails.fOrderTime | date:'yyyy-MM-dd HH:mm:ss' }}</span>
+            </div>
+
+            <div class="info-row">
+              <span class="info-label">執行狀態</span>
+              <span class="info-value status-badge">{{ getExecStatusText(orderDetails.fExecStatus) }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button class="btn btn-primary return-btn" (click)="goToShop()">
+            <i class="fas fa-store me-2"></i>返回商城
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 購物車內容 -->
+  <div class="row" *ngIf="!orderSuccess">
+    <div class="col-md-8">
+      <div *ngIf="cartItems.length > 0; else emptyCart">
+        <div *ngFor="let item of cartItems; let i = index">
+          <div class="cart-item d-flex align-items-center shadow-sm">
+            <img [src]="'assets/img/'+item.image" class="img-fluid item-image" alt="{{ item.name }}">
+            <div class="item-details flex-grow-1">
+              <h5>{{ item.name }}</h5>
+            </div>
+            <div class="item-actions d-flex align-items-center">
+              <p class="mb-0 me-3">點數: {{ item.price }}</p>
+              <p class="mb-0 me-3">數量:
+                <input type="number" class="quantity-input" [value]="item.quantity" (change)="updateQuantity(i, $event)">
+              </p>
+              <button class="btn btn-danger remove-btn" (click)="removeItem(i)">移除</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #emptyCart>
+        <h3>購物車中沒有商品。</h3>
+      </ng-template>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">總計點數</h5>
+          <p class="card-text">{{ getTotal() }} 點</p>
+          <p class="card-text">
+            可用點數:
+            <span *ngIf="isMemberLoggedIn; else notLoggedIn">350 點</span>
+            <ng-template #notLoggedIn>未登入</ng-template>
+          </p>
+            <p class="card-text">結帳金額: {{ getTotal() }} 點</p>
+          <button
+            class="btn btn-primary"
+            (click)="checkout()"
+            [disabled]="!cartItems || cartItems.length === 0 || getTotal() > 350">
+            結帳
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 未登入提示 -->
+  <div *ngIf="!isMemberLoggedIn" class="login-reminder">
+    <p>請先登入以繼續購物</p>
+    <button (click)="goToShop()" class="login-btn">
+      前往登入
+    </button>
+  </div>
+
+  <!-- 確認對話框 -->
+  <div class="modal" *ngIf="showConfirmDialog">
+    <div class="modal-content">
+      <h2>確認</h2>
+      <p>您確定要結帳嗎？</p>
+      <button (click)="confirmCheckout()">確認</button>
+      <button (click)="cancelCheckout()">取消</button>
+    </div>
+  </div>
+</div>

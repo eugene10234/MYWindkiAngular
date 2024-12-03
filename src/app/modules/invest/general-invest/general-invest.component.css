@@ -1,0 +1,134 @@
+/* 全局背景設置為白色 */
+body {
+  background-color: #ffffff;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+/* 主容器，兩邊對齊分佈 */
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+/* 搜尋區域 */
+.search-section {
+  width: 40%;
+}
+
+/* 搜尋框與按鈕的排版 */
+.search-section input {
+  width: calc(100% - 90px);
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #333;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.search-section button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #FF8C00;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-section button:hover {
+  background-color: #FF6A00;
+}
+
+/* 搜尋結果表格 */
+.search-results-table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.search-results-table th, .search-results-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.search-results-table th {
+  background-color: #008000;
+  color: white;
+}
+
+.search-results-table td {
+  background-color: #f9f9f9;
+}
+
+/* 確認按鈕樣式 */
+.confirm-button {
+  padding: 3px 5px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #FF8C00;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.confirm-button:hover {
+  background-color: #FF6A00;
+}
+
+/* 股票詳情區域 */
+.stock-quote-section {
+  width: 55%;
+  padding-left: 20px;
+}
+
+.stock-quote-section h3 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* 股票詳情表格 */
+.stock-quote-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.stock-quote-table th, .stock-quote-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.stock-quote-table th {
+  background-color: #008000;
+  color: white;
+}
+
+.stock-quote-table td {
+  background-color: #f2f2f2;
+}
+
+.stock-quote-table tr:hover {
+  background-color: #ddd;
+}
+
+/* 模擬下單按鈕樣式 */
+.simulate-order-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #FF8C00; /* 橘色背景 */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px; /* 添加距離表格的間隔 */
+}
+
+.simulate-order-button:hover {
+  background-color: #FF6A00; /* 橘色加深的懸停效果 */
+}

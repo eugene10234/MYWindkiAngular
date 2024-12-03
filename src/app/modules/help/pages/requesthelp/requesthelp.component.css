@@ -1,0 +1,262 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: url('/assets/helping1/images/city.png') no-repeat center center ; /* 設置整頁的背景圖片 */
+  background-size: cover; /* 確保背景圖片覆蓋整個畫面 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 100px;  /* 增加左右內容的間距 */
+}
+.text-content {
+  flex: 1;
+  padding-right: 20px;
+}
+
+/* 添加淡入動畫 */
+@keyframes smoothFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+h1 {
+  font-size: 3em;
+  font-weight: 700;
+  color: #2c2c6c;
+  opacity: 0;  /* 初始透明 */
+  animation: smoothFadeIn 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* 段落動畫，延遲 0.3 秒開始 */
+p {
+  font-size: 1.2em;
+  color: #707070;
+  opacity: 0;
+  animation: smoothFadeIn 1s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+}
+
+/* 按鈕區塊動畫，延遲 0.6 秒開始 */
+.buttons {
+  margin-top: 20px;
+  margin-bottom: -30px;
+  opacity: 0;
+  animation: smoothFadeIn 1s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
+}
+
+/* 按鈕動畫效果 */
+.button-primary {
+  background-color: #1a73e8;
+  color: #fff;
+  padding: 15px 30px;
+  margin-right: 15px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+/* 按鈕懸停效果 */
+.button-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(26, 115, 232, 0.3);
+  background-color: #1557b0;
+}
+
+/* 按鈕點擊效果 */
+.button-primary:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(26, 115, 232, 0.3);
+}
+
+/* 按鈕波紋效果 */
+/* .button-primary::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease-out, height 0.6s ease-out;
+} */
+
+.button-primary:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+.button-secondary {
+  color: #1a73e8;
+  padding: 15px 30px;
+  text-decoration: none;
+  font-weight: bold;
+}
+.image-content {
+  flex: 1.2;  /* 給圖片更多空間 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+img {
+  width:300%;
+  max-width: 400px;
+}
+/* 圖片樣式 */
+.image-content img {
+  width: 150%; /* 增加圖片大小 */
+  max-width: 800px; /* 更大的最大寬度限制 */
+  height: auto;
+  object-fit: cover;
+  margin-left: 100px; /* 增加 margin-left 來向右移動圖片 */
+}
+
+.form-content {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+
+.form-group {
+  margin-bottom: 15px;
+  flex: 1;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="helpclass"],
+input[type="address"],
+input[type="helpcontent"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: #000;
+  font-size: 1.2em;
+}
+
+
+
+button.button-primary {
+  background-color: #1a73e8;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+}
+
+button.button-primary:hover {
+  background-color: #155ab5;
+}
+
+
+label {
+  display: block;
+  font-size: 1.2em;
+  font-family: '微軟正黑體';
+  margin-bottom: 10px;
+  margin-top: 5px;
+
+  color: #000; /* 確保標籤文字顯示為不透明的黑色 */
+}
+select {
+ padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  appearance: none; /* 移除預設的下拉箭頭樣式 */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath fill='%23000000' d='M5 7l5 5 5-5H5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 15px;
+  color: #000;
+  font-size: 1.2em;
+}
+.large-input {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  font-size: 1.2em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;  /* 允許垂直調整大小 */
+  font-family: inherit;  /* 繼承字體 */
+  color: #000;
+}
+
+.large-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+}
+.demo-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 8px 15px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.demo-btn:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.demo-btn i {
+  font-size: 1rem;
+}
+
+/* 確保 form-content 有相對定位 */
+.form-content {
+  position: relative;
+  /* 其他現有樣式 */
+}

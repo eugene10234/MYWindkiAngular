@@ -1,0 +1,397 @@
+/* Hero Section 樣式 */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-image: url('src/assets/helping1/images/banner.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* background-attachment: fixed; 添加這行來創建基本視差效果 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: brightness(0.9) contrast(1.1) saturate(1.2);
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    rgba(128, 123, 123, 0.5),
+    rgba(144, 122, 122, 0.3)
+  );
+  backdrop-filter: blur(0.5px);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 20px;
+  max-width: 800px;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.hero-title h1 {
+  color: #ffffff;
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-subtitle  {
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.hero-action {
+  margin-top: 2rem;
+}
+
+.action-button {
+  display: inline-block;
+  padding: 1.2rem 3rem;
+  background-color: #ffffff;
+  color: #333333;
+  text-decoration: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.action-button:hover {
+  color: #ffffff  !important;
+  font-size: 1.2rem;
+  background: linear-gradient(135deg, #a0b0f0, #d8ee80);
+
+  border-color: #ffffff;
+  transform: translateY(-2px) scale(1.09);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  cursor: pointer;  /* 添加這行 */
+}
+
+/* Content Section 樣式 */
+.content-section {
+  min-height: 100vh;
+  padding: 40px 20px;
+  background-color: #f8f9fa;
+  display: flex;
+  align-items: center;
+
+}
+
+.row {
+  width: 100%;
+  margin: 0;
+}
+/* 表單區域 */
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1; /* 讓表單佔據剩餘空間 */
+  gap: 2rem; /* 各元素之間的間距 */
+}
+/* 位置輸入區域 */
+.mb-3.position-relative {
+  flex: 1;
+}
+
+/* 姓名和郵件區域 */
+.row.mb-3 {
+  flex: 1;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+}
+.form-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  right: -30%;
+
+}
+
+.form-container {
+  width: 150%;
+  max-width: 700px;
+  background-color: white;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  position: relative;
+  z-index: 2;
+  transform: translateX(30%);
+  box-sizing: border-box;
+  /* 新增 flex 布局 */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 500px; /* 設置最小高度 */
+}
+
+.form-container h2 {
+  color: #2c3e50;
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.form-container p {
+  color: #666;
+  font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.rounded-input {
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  padding: 10px 15px;
+  font-size: 1.2rem;
+}
+
+.form-label {
+  color: #352c50;
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 0.7rem;
+  display: block;
+}
+
+.input-group {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.btn-secondary {
+  height: 48px;
+  background-color: #65fb6a;
+  color: #2c3e50;
+  border: none;
+  border: 2px solid #e9e9ef !important;
+  padding: 0 1.2rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #eeff00;
+  color: #1a252f;
+}
+
+.btn-primary {
+  width: 100%;
+  height: 54px;
+  background: linear-gradient(135deg, #f2ea78, #63affb);
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  box-sizing: border-box;
+  margin-top: auto; /* 按鈕靠下對齊 */
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+}
+
+.image-wrapper {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin-left: -30%;
+  right: -15%; /* 添加這行，向右移動 */
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* 動畫效果 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 響應式設計 */
+/* 響應式設計修改 */
+@media screen and (max-width: 1200px) {
+  .form-container {
+    transform: translateX(20%);
+    padding: 35px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .form-container {
+    transform: translateX(10%);
+    padding: 30px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .content-section {
+    padding: 20px 10px;
+  }
+
+  .form-wrapper {
+    padding: 10px;
+  }
+
+  .form-container {
+    transform: none;
+    padding: 25px;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .btn-primary {
+    height: 48px;
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .form-group {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .form-container {
+    padding: 20px;
+  }
+}
+/* 表單布局調整 */
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;  /* 設置欄位之間的間距 */
+}
+
+.form-group {
+  flex: 1;  /* 讓每個欄位佔據相等空間 */
+}
+
+/* 左側欄位對齊 */
+.form-group.left-align {
+  margin-right: auto;
+  padding-right: 10px;
+}
+
+/* 右側欄位對齊 */
+.form-group.right-align {
+  margin-left: auto;
+  padding-left: 10px;
+}
+/* 工具類 */
+.position-relative {
+  position: relative;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.mb-3 {
+  margin-bottom: 1.5rem !important;
+}
+.row.mb-3 {
+  margin-bottom: 2rem !important;
+}
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mb-5 {
+  margin-bottom: 3rem;
+}
+
+/* 表單控制項樣式 */
+.form-control {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  background-color: #fff !important;
+  border-color: #3498db !important;
+  box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.1) !important;
+}
+.form-control::placeholder {
+  color: #adb5bd;
+}
+/* 標題容器 */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+/* Demo 按鈕樣式 */
+.demo-btn {
+  padding: 8px 15px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.demo-btn:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.demo-btn i {
+  font-size: 1rem;
+}

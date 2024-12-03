@@ -1,0 +1,66 @@
+<div class="member-info">
+  目前登入的會員帳號：{{ fMemberId }}
+</div>
+
+<div class="container">
+  <!-- 搜尋區域 -->
+  <div class="search-section">
+    <input style="color: black;" [(ngModel)]="query" placeholder="輸入股票代號..." />
+    <button (click)="onSearch()">搜尋</button>
+
+    <!-- 搜尋結果表格 -->
+    <table *ngIf="searchResults.length > 0" class="search-results-table">
+      <thead>
+        <tr>
+          <th>操作</th>
+          <th>股票代號</th>
+          <th>股票名稱</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let stock of searchResults">
+          <td>
+            <button (click)="onSelectStock(stock.fStockId)" class="confirm-button">
+              確認
+            </button>
+          </td>
+          <td>{{ stock.fStockId }}</td>
+          <td>{{ stock.fStockName }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 查無資料訊息 -->
+    <div *ngIf="searchResults.length === 0 && query">
+      查無資料，請重新輸入。
+    </div>
+  </div>
+
+  <!-- 股票詳情區域 -->
+  <div *ngIf="selectedStockQuote" class="stock-quote-section">
+    <h3>股票詳細報價</h3>
+    <table class="stock-quote-table">
+      <thead>
+        <tr><th>欄位名稱</th><th>資料</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>日期</td><td>{{ selectedStockQuote.date }}</td></tr>
+        <tr><td>股票代號</td><td>{{ selectedStockQuote.symbol }}</td></tr>
+        <tr><td>股票名稱</td><td>{{ selectedStockQuote.name }}</td></tr>
+        <tr><td>參考價</td><td>{{ selectedStockQuote.referencePrice }}</td></tr>
+        <tr><td>前收價</td><td>{{ selectedStockQuote.previousClose }}</td></tr>
+        <tr><td>開盤價</td><td>{{ selectedStockQuote.openPrice }}</td></tr>
+        <tr><td>最高價</td><td>{{ selectedStockQuote.highPrice }}</td></tr>
+        <tr><td>最低價</td><td>{{ selectedStockQuote.lowPrice }}</td></tr>
+        <tr><td>最新價</td><td>{{ selectedStockQuote.lastPrice }}</td></tr>
+        <tr><td>成交量</td><td>{{ selectedStockQuote.lastSize }}</td></tr>
+        <tr>
+          <td>最後更新時間</td>
+          <td>{{ selectedStockQuote.lastUpdated | date: 'yyyy/MM/dd HH:mm:ss' }}</td>
+        </tr>
+
+      </tbody>
+    </table>
+    <button  (click)="navigateToOrder()" class="simulate-order-button">模擬下單</button>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="container">
+  <button class="demo-btn" (click)="fillDemoData()">Demo</button>
+  <h2>註冊帳號</h2>
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label><span class="required">*</span>用戶名：</label>
+      <input type="text" formControlName="username">
+      <span class="hint" *ngIf="signupForm.get('username')?.errors?.['minlength'] && signupForm.get('username')?.touched">
+        用戶名小於 3 個字符
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label><span class="required">*</span>密碼：</label>
+      <input type="password" formControlName="password">
+      <span class="hint" *ngIf="signupForm.get('password')?.errors?.['required'] && signupForm.get('password')?.touched">
+        請輸入密碼
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label><span class="required">*</span>確認密碼：</label>
+      <input type="password" formControlName="confirmPassword">
+      <span class="hint" *ngIf="signupForm.errors?.['passwordMismatch'] && signupForm.get('confirmPassword')?.touched">
+        密碼不相符
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label><span class="required">*</span>Email：</label>
+      <input type="email" formControlName="email">
+      <span class="hint" *ngIf="signupForm.get('email')?.errors?.['email'] && signupForm.get('email')?.touched">
+        請輸入正確的Email
+      </span>
+    </div>
+
+    <div class="agreement">
+      <input type="checkbox" formControlName="agreement" id="agreement">
+      <label for="agreement">同意網站服務條款</label>
+    </div>
+
+    <button type="submit" class="submit-btn" [disabled]="!signupForm.valid || isSubmitting">
+      {{ isSubmitting ? '提交中...' : '提交' }}
+    </button>
+  </form>
+</div>

@@ -1,0 +1,27 @@
+<div class="container">
+  <!-- 會員帳號信息 -->
+  <p class="member-info">目前登入的會員帳號：<span class="highlight">M0000000003</span></p>
+
+  <!-- 功能按鈕 -->
+  <div class="button-group">
+    <button class="nav-button orange" (click)="navigateToGeneralInvest()">模擬下單</button>
+    <button class="nav-button green" (click)="navigateToTranRecord()">交易紀錄</button>
+    <button class="nav-button gray" (click)="navigateToStockInventory()">庫存損益</button>
+  </div>
+
+  <h1 class="title">台股發行量加權股價報酬指數</h1>
+  <!-- 台股指數 -->
+  <div class="info-box" >
+    <h2>發行量加權股價報酬指數</h2>
+    <p>最新指數: <span>{{ marketData?.index }}</span></p>
+    <p>交易所: <span>{{ marketData?.exchange }}</span></p>
+    <p>更新時間: <span>{{ marketData?.formattedTime }}</span></p>
+  </div>
+
+
+
+  <ng-template #loading>
+    <p class="loading">正在加載數據...</p>
+  </ng-template>
+</div>
+

@@ -1,0 +1,184 @@
+.nav-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 20px;
+}
+
+/* 搜尋按鈕 */
+.btn-search {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #dee2e6;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* 購物車 */
+.cart-icon {
+  position: relative;
+  color: rgb(80, 179, 55);
+  text-decoration: none;
+}
+
+.cart-count {
+  position: absolute;
+  top: -5px;
+  left: 15px;
+  height: 18px;
+  min-width: 20px;
+  background-color: #6c757d;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  padding: 0 4px;
+}
+
+/* 使用者區域 */
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-icon {
+  color: rgb(5, 145, 200);
+  text-decoration: none;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.username {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.points {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  white-space: nowrap;
+}
+
+.logout-btn {
+  color: #dc3545;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.logout-btn:hover {
+  background-color: rgba(220, 53, 69, 0.1);
+}
+
+/* 未登入區域 */
+.auth-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.signup-btn,
+.login-btn {
+  cursor: pointer;
+  text-decoration: none;
+  padding: 4px 12px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.signup-btn:hover,
+.login-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .nav-container {
+    gap: 12px;
+    padding: 8px 12px;
+  }
+
+  .user-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .points {
+    font-size: 0.8em;
+  }
+}
+.nav-auth-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.username {
+  margin: 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.profile-link {
+  color: #2196F3;
+  transition: color 0.3s ease;
+}
+
+.profile-link:hover {
+  color: #1976D2;
+}
+
+.profile-link i {
+  font-size: 20px;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #666;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.logout-btn i {
+  font-size: 14px;
+}
+
+.logout-btn span {
+  font-size: 14px;
+}
+
+.logout-btn:hover {
+  color: #f44336;
+}
+
+.auth-btn {
+  padding: 6px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+}

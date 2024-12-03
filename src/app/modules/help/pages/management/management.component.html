@@ -1,0 +1,283 @@
+<body>
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">選單</div>
+
+    </div>
+    <ul>
+      <!-- <li><a href="#" (click)="switchContent('help', $event)">幫助紀錄</a></li> -->
+      <li><a href="#" (click)="switchContent('request', $event)">求助紀錄</a></li>
+      <li><a href="#" (click)="switchContent('match', $event)">媒合區</a></li>
+      <li><a href="#" (click)="switchContent('chat', $event)">聊天室</a></li>
+      <!-- <li><a href="#" (click)="switchContent('chat', $event)">聊天紀錄</a></li> -->
+      <!-- <li><a href="#"></a></li>
+          <li><a href="#"></a></li> -->
+    </ul>
+    <!-- <div class="mode">
+          <span>Dark Mode</span>
+          <div class="mode-toggle"></div>
+      </div> -->
+  </div>
+  <div class="container">
+
+
+    <div class="header">
+      <div class="header-title">幸福來的太快，就像龍捲風</div>
+      <div class="buttons">
+        <input type="text" class="search-input" placeholder="搜尋紀錄...">
+        <button class="btn btn-search"><span>🔍</span> 搜 尋</button>
+        <button class="btn btn-delete">
+          <span>🗑️</span> 刪除紀錄
+        </button>
+        <!-- <button class="btn btn-track">
+            <span>&#128339;</span> 追蹤訂單
+          </button> -->
+        <button class="btn btn-edit">
+          <span>✎</span> 修改申請
+        </button>
+      </div>
+    </div>
+
+
+    <div class="progress">
+      <div class="progress-status complete" (click)="filterByClass(1)">
+        <div class="icon">
+          <img src="/assets/helping1/images/hammer.png" alt="hammer icon">
+        </div>
+        <h6>技術類</h6>
+      </div>
+
+      <div class="progress-status complete" (click)="filterByClass(2)">
+        <div class="icon">
+          <img src="/assets/helping1/images/lifestyle.png" alt="lifestyle icon">
+        </div>
+        <h6>生活類</h6>
+      </div>
+
+      <div class="progress-status complete" (click)="filterByClass(3)">
+        <div class="icon">
+          <img src="/assets/helping1/images/clean.png" alt="clean icon">
+        </div>
+        <h6>勞力類</h6>
+      </div>
+
+      <div class="progress-status complete" (click)="filterByClass(4)">
+        <div class="icon">
+          <img src="/assets/helping1/images/teach.png" alt="teach icon">
+        </div>
+        <h6>腦力類</h6>
+      </div>
+
+      <div class="progress-status complete" (click)="filterByClass(5)">
+        <div class="icon">
+          <img src="/assets/helping1/images/teaching.png" alt="teaching icon">
+        </div>
+        <h6>教育類</h6>
+      </div>
+    </div>
+
+    <!-- 媒合紀錄內容 -->
+    <div *ngIf="currentContent === 'match'" class="fade-in">
+      <!-- 載入中提示 -->
+      <div *ngIf="loading" class="loading-spinner">
+        載入中...
+      </div>
+      <!-- 錯誤提示 -->
+      <div *ngIf="error" class="error-message">
+        {{ error }}
+      </div>
+      <!-- 紀錄列表 -->
+      <div *ngIf="!loading && !error" class="record-container">
+        <div class="record-header-controls">
+          <h3 class="record-container-title">媒合紀錄</h3>
+          <div class="sort-controls">
+            <button (click)="sortRecords('desc','match')">最新優先</button>
+            <button (click)="sortRecords('asc','match')">最舊優先</button>
+          </div>
+        </div>
+        <div class="record-card" *ngFor="let record of matchRecords">
+          <div class="record-header">
+            <div class="record-info-left">
+              <h4 class="record-title">
+                求助者: {{helperService.getDistrictName(record.districtId)}} {{record.helpName}}
+              </h4>
+            </div>
+            <div class="record-info-right">
+              <h4 class="helper-title">幫助者: {{record.helperName}}</h4>
+            </div>
+          </div>
+          <span class="record-timestamp">{{record.matchDate | date:'yyyy/MM/dd'}}</span>
+          <div class="record-content">
+            <p>{{helperService.getHelpClassName(record.helpClass)}}</p>
+            <div class="content-row">
+              <p>{{record.helpContent}}</p>
+              <span class="points-badge">{{record.points}}點</span>
+            </div>
+          </div>
+
+          <div class="progress-bar">
+            <div class="progress-fill" [style.width]="getProgressWidth(record.helpStatus)"></div>
+          </div>
+          <div class="progress-stage">
+            <span [class.active]="record.helpStatus === 1">待媒合</span>
+            <span [class.active]="record.helpStatus === 2">進行中</span>
+            <span [class.active]="record.helpStatus === 3">已完成</span>
+            <span [class.active]="record.helpStatus === 4">已評價</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <!-- 幫助紀錄內容 -->
+    <div *ngIf="currentContent === 'help'">
+      <div class="header">
+        <div class="header-title">幫助紀錄</div>
+        <!-- ... 幫助紀錄的內容 ... -->
+      </div>
+    </div>
+    <!-- 求助紀錄內容 -->
+    <div *ngIf="currentContent === 'request'" class="fade-in">
+      <!-- 載入中提示 -->
+      <!-- <div *ngIf="loading" class="loading-spinner">
+        載入中...
+      </div> -->
+      <!-- 錯誤提示 -->
+      <div *ngIf="error" class="error-message">
+        {{ error }}
+      </div>
+      <!-- 紀錄列表 -->
+      <div *ngIf="requestRecords && !error" class="record-container">
+        <div class="record-header-controls">
+          <h3 class="record-container-title">求助紀錄</h3>
+          <div class="sort-controls">
+            <button (click)="sortRecords('desc','request')">最新優先</button>
+            <button (click)="sortRecords('asc','request')">最舊優先</button>
+          </div>
+        </div>
+
+        <div class="record-card" *ngFor="let record of requestRecords">
+          <div class="record-header">
+            <div class="record-info-left">
+              <h4 class="record-title">
+                求助者: {{helpService.getDistrictName(record.districtId)}} {{record.name}}
+              </h4>
+            </div>
+          </div>
+          <span class="record-timestamp">{{record.createTime | date:'yyyy/MM/dd'}}</span>
+
+          <div class="record-content">
+            <p>{{helpService.getHelpClassName(record.helpClass)}}</p>
+            <div class="content-row">
+              <p>{{record.helpContent}}</p>
+              <span class="points-badge">{{record.points}} 點</span>
+            </div>
+          </div>
+
+          <div class="progress-bar">
+            <div class="progress-fill" [style.width]="getProgressWidth(record.status)"></div>
+          </div>
+          <div class="progress-stage">
+            <span [class.active]="record.status === 1">待媒合</span>
+            <span [class.active]="record.status === 2">進行中</span>
+            <span [class.active]="record.status === 3">已完成</span>
+            <span [class.active]="record.status === 4">已評價</span>
+          </div>
+
+          <div class="action-buttons">
+            <button class="action-btn cancel"  *ngIf="record.status===1 ||record.status===2" (click)="cancelRequest()" [disabled]="loading">
+              <span class="icon">🚫</span>
+              取消求助
+            </button>
+            <button class="action-btn complete"  *ngIf="record.status===2"   (click)="completeRequest(record.helpId)" [disabled]="loading">
+              <span class="icon">✅</span>
+              完成
+            </button>
+            <button class="action-btn rate"  *ngIf="record.status===3"  (click)="rateRequest(requestRecords,record.helpId)" [disabled]="loading">
+              <span class="icon">⭐</span>
+              評價
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <!-- 聊天紀錄內容 -->
+    <div *ngIf="currentContent === 'chat'">
+
+      <div class="header-title">聊天紀錄</div>
+      <!-- ... 聊天紀錄的內容 ... -->
+    </div>
+
+  </div>
+
+
+  <!-- 評價彈出框 -->
+<div class="rating-modal" *ngIf="showRatingModal">
+  <div class="modal-content">
+    <h2>評價</h2>
+    <div class="star-rating">
+      <span *ngFor="let star of [1, 2, 3, 4, 5]" (click)="rate(star)" [class.selected]="star <= currentRating">
+        ★
+      </span>
+    </div>
+
+    <textarea [(ngModel)]="ratingComment" placeholder="請輸入想說的話..."></textarea>
+    <div class="modal-buttons">
+      <button (click)="submitRating()">確認送出</button>
+      <button (click)="closeRatingModal()">取   消</button>
+    </div>
+  </div>
+
+</div>
+
+
+
+<div class="chat-wrapper" [class.show-chat]="showChat">
+  <div class="chat-container">
+    <!-- 聊天室標題 -->
+    <div class="chat-header">
+      <h3>聊天室</h3>
+      <button class="chat-button close-btn" (click)="closeChat()">關閉</button>
+    </div>
+
+    <!-- 聊天內容區域 -->
+    <div class="chat-content">
+      <!-- 錯誤提示 -->
+      <div *ngIf="error" class="chat-error">
+        <i class="fas fa-exclamation-circle"></i> {{ error }}
+      </div>
+
+      <!-- 回應內容 -->
+      <div *ngIf="response" class="chat-response">
+        {{ response }}
+      </div>
+    </div>
+
+    <!-- 輸入區域 -->
+    <div class="chat-input-area">
+      <input [(ngModel)]="userMessage"
+             placeholder="請輸入您的問題..."
+             class="chat-input"
+             (keyup.enter)="sendMessage()">
+      <button (click)="sendMessage()"
+              [disabled]="loading"
+              class="chat-button">
+        {{ loading ? '發送中...' : '發送' }}
+      </button>
+    </div>
+    </div>
+  </div>
+
+</body>

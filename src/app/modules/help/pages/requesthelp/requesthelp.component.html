@@ -1,0 +1,96 @@
+<body>
+
+  <div class="container">
+    <div *ngIf="showMainContent; else formTemplate" class="text-content">
+      <div class="badge">#1 Editors Choice App of 2020</div>
+      <h1>生活中遇到困難了嗎?</h1>
+      <p style="font-family: '微軟正黑體';">立即尋找周遭的幫助，讓大家一起協助你</p>
+      <div class="buttons">
+        <button (click)="toggleContent()" class="button-primary">立即開始</button>
+      </div>
+    </div>
+
+    <ng-template #formTemplate>
+      <div class="text-content form-content" [@fadeIn]>
+        <!-- 添加 DEMO 按鈕 -->
+        <button class="demo-btn" (click)="fillDemoData()">
+          <i class="fas fa-magic"></i> DEMO
+        </button>
+        <h2>求助申請</h2>
+        <form (ngSubmit)="onSubmit()">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">姓名</label>
+              <input type="text" id="name" name="name" [(ngModel)]="formData.name" required>
+              <!-- <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error-message">
+                請輸入姓名
+              </div> -->
+            </div>
+            <div class="form-group">
+              <label for="phone">手機</label>
+              <input type="tel" id="phone" name="phone" [(ngModel)]="formData.phone">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">信箱</label>
+            <input type="email" id="email" name="email" [(ngModel)]="formData.email" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="city">縣市</label>
+              <select id="city" name="city">
+
+                <option value="台北市">台北市</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="district">行政區</label>
+              <select id="fDistrictId" name="fDistrictId" [(ngModel)]="formData.districtId"
+                (change)="onDistrictChange($event)">
+                <option *ngFor="let class of districtclass" [value]="class.fDistrictId">
+                  {{class.fDistrict}}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group"></div>
+          <label for="address">詳細地址</label>
+          <input type="address" id="address" name="address" [(ngModel)]="formData.address" required>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="helpclass">類別</label>
+              <select id="helpclass" name="helpclass" [(ngModel)]="formData.helpClass">
+                <option *ngFor="let class of helpclass" [value]="class.fHelpClassId">{{class.fHelpClass}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="points">點數</label>
+              <select id="points" name="points" [(ngModel)]="formData.points">
+                <option value="10">10點</option>
+                <option value="20">20點</option>
+                <option value="30">30點</option>
+                <option value="40">40點</option>
+                <option value="50">50點</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="helpcontent">內容簡述</label>
+            <textarea id="helpcontent" name="helpcontent" [(ngModel)]="formData.helpContent"
+              class="large-input"></textarea>
+          </div>
+          <div class="buttons">
+            <button type="submit" class="button-primary">送出申請</button>
+          </div>
+        </form>
+      </div>
+    </ng-template>
+
+    <div class="image-content">
+      <img src="/assets/helping1/images/worried2.png" alt="App Mockup">
+    </div>
+  </div>
+
+</body>

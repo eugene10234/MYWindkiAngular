@@ -1,0 +1,31 @@
+<div class="nav-container">
+  <!-- 搜尋按鈕 -->
+  <!--<button class="btn-search" data-bs-toggle="modal" data-bs-target="#searchModal">
+    <i class="fas fa-search text-primary"></i>
+  </button>
+
+  <!-- 購物車 -->
+  <a routerLink="/cart" class="cart-icon">
+    <i class="fa fa-shopping-bag fa-2x"></i>
+    <!--<span class="cart-count">{{ cartItemCount }}</span>-->
+  </a>
+  <div class="nav-auth-container" *ngIf="islogin">
+    <div class="user-info">
+      <p class="username">{{userName}}</p>
+      <a routerLink="member/account/profile/base" class="profile-link">
+        <i class="fas fa-user"></i>
+      </a>
+    </div>
+    <a class="logout-btn" (click)="navloglogout()">
+      <i class="fas fa-sign-out-alt"></i>
+      <span>登出</span>
+    </a>
+  </div>
+
+  <div class="nav-auth-container" *ngIf="!islogin">
+    <a class="auth-btn signup-btn" routerLink="member/signup/personsignup">註冊</a>
+    <a class="auth-btn login-btn" (click)="openLoginpopup()">登入</a>
+  </div>
+</div>
+
+

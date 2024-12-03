@@ -1,0 +1,123 @@
+<!-- 主要布局容器 -->
+<div class="layout-container">
+  <!-- 左側邊欄 -->
+  <div class="left-sidebar">
+    <nav class="nav-menu">
+      <!-- 首頁選項 -->
+      <div class="nav-item" [routerLink]="['/social/main']" routerLinkActive="active">
+        <i class="pi pi-home"></i>
+        <span>Home</span>
+      </div>
+      <!-- 探索選項 -->
+      <div class="nav-item" [routerLink]="['/social/search']" routerLinkActive="active">
+        <i class="pi pi-search"></i>
+        <span>Explore</span>
+      </div>
+      <!-- 訊息選項 -->
+      <div class="nav-item" [routerLink]="['/social/message']" routerLinkActive="active">
+        <i class="pi pi-envelope"></i>
+        <span>Messages</span>
+      </div>
+      <!-- 個人資料選項 -->
+      <div class="nav-item" [routerLink]="['/social/person']" routerLinkActive="active">
+        <i class="pi pi-user"></i>
+        <span>個人資料</span>
+      </div>
+    </nav>
+  </div>
+
+  <!-- 訊息列表區域 -->
+  <div class="messages-container">
+    <!-- 訊息列表標題 -->
+    <div class="messages-header">
+      <h2>訊息</h2>
+      <div class="header-actions">
+        <i class="pi pi-cog"></i>
+        <i class="pi pi-envelope"></i>
+      </div>
+    </div>
+
+    <!-- 搜尋欄 -->
+    <div class="search-box">
+      <i class="pi pi-search"></i>
+      <input type="text" placeholder="搜尋訊息">
+    </div>
+
+    <!-- 聊天列表 -->
+    <div class="chat-list">
+      <div *ngFor="let chat of chatList"
+           (click)="selectChat(chat)"
+           [class.active]="selectedChat?.id === chat.id">
+        <div class="chat-item">
+          <img [src]="chat.avatar" alt="用戶頭像" class="chat-avatar">
+          <div class="chat-info">
+            <div class="name">{{ chat.name || chat.FMemberId }}</div>
+            <div class="last-message">{{ chat.lastMessage }}</div>
+          </div>
+          <div class="time">{{ chat.lastMessageTime | date:'short' }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 聊天詳情區域 -->
+  <div class="chat-detail" *ngIf="selectedChat" class="bg-white shadow-lg rounded-lg overflow-hidden">
+    <!-- 聊天標題 -->
+    <div class="chat-header p-4 border-b border-gray-200">
+      <div class="user-info flex items-center gap-4">
+        <img [src]="selectedChat.avatar" alt="用戶頭像" class="w-10 h-10 rounded-full">
+        <span class="user-name font-bold text-lg">{{selectedChat.name}}</span>
+      </div>
+      <div class="chat-actions">
+        <i class="pi pi-info-circle text-gray-600 hover:text-gray-800 cursor-pointer"></i>
+      </div>
+    </div>
+
+    <!-- 聊天訊息區域 -->
+    <div class="chat-content p-4">
+      <div class="messages space-y-2">
+        <div *ngFor="let message of messages"
+             [ngClass]="message.FMemberId === currentUserId ? 'message-sent' : 'message-received'">
+          <div class="message-wrapper">
+            <img [src]="message.FMemberId === currentUserId ? selectedChat?.avatar : selectedChat?.avatar"
+                 alt="用戶頭像"
+                 class="message-avatar"
+                 [class.avatar-right]="message.FMemberId === currentUserId"
+                 [class.avatar-left]="message.FMemberId !== currentUserId">
+            <div class="message-bubble">
+              <div class="message-content">{{ message.FMessContent }}</div>
+              <div class="message-time">
+                {{ message.FCreateTime | date:'yyyy-MM-dd HH:mm:ss' }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 輸入區域 -->
+      <div class="flex items-end gap-2 p-4 bg-white border-t border-gray-200">
+        <textarea
+          [(ngModel)]="newMessage"
+          placeholder="輸入訊息..."
+          (keydown)="onKeyPress($event)"
+          class="flex-1 min-h-[40px] max-h-[120px] p-2 border-2 border-gray-300 rounded-lg resize-none focus:outline-none focus:border-blue-500 text-sm"
+        ></textarea>
+
+        <div class="flex gap-2">
+          <button
+            (click)="sendRandomMessage()"
+            class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-blue-50 transition-colors">
+            <i class="pi pi-bolt text-blue-500"></i>
+          </button>
+
+          <button
+            (click)="sendMessage()"
+            [disabled]="!newMessage?.trim() || isLoading"
+            class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+            <i class="pi" [ngClass]="{'pi-send': !isLoading, 'pi-spinner pi-spin': isLoading}"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

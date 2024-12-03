@@ -1,0 +1,90 @@
+<div class="container-fluid delayed">
+  <div class="sidebar">
+    <h2>類別</h2>
+    <button *ngFor="let helpclass of HelpClass"
+            [value]="helpclass.fHelpClassId"
+            class="btn"
+            (click)="filterByCategory(helpclass.fHelpClassId)">
+      {{helpclass.fHelpClass}}
+    </button>
+  </div>
+
+  <!-- 使用 ngIf 控制顯示，並添加條件樣式 -->
+  <div class="cards-container" *ngIf="showCardsContainer">
+    <div class="card" *ngFor="let record of filteredRecords" (click)="handleCardClick(record)">
+      <h5>位於 {{ helpService.getDistrictName(record.districtId) }} 的 {{ record.name }}</h5>
+      <p>{{ helpService.getHelpClassName(record.helpClass) }}</p>
+      <p>{{ record.helpContent | slice:0:20 }}...</p>
+      <p>點數: {{ record.points }}</p>
+    </div>
+  </div>
+
+  <div class="map-container"[ngClass]="{'full-width': !showCardsContainer}">
+
+    <!-- 新增確認卡片 -->
+  <div class="confirm-card" *ngIf="showConfirmCard" [ngStyle]="confirmCardPosition">
+    <div class="confirm-card-content">
+      <h3>確定是他嗎?</h3>
+
+        <!-- 添加距離訊息 -->
+        <div class="distance" *ngIf="selectedRecordDistance">
+          距離你大約: {{selectedRecordDistance}} 公里
+      </div>
+      <div class="duration" *ngIf="selectedRecordDuration">
+        預計耗時: {{selectedRecordDuration}}
+    </div>
+      <div class="confirm-buttons">
+        <button class="confirm-btn" (click)="confirmMatch()">確認</button>
+        <button class="cancel-btn" (click)="cancelMatch()">取消</button>
+      </div>
+    </div>
+  </div>
+
+
+    <google-map [center]="center" [options]="options" height="100%" width="100%">
+       <!-- 添加交通模式控制面板 -->
+       <div class="travel-mode-panel">
+        <button class="travel-mode-btn"
+                [class.active]="currentTravelMode === travelModes.DRIVING"
+                (click)="changeTravelMode(travelModes.DRIVING)">
+            <i class="fas fa-car"></i> 開車
+        </button>
+        <button class="travel-mode-btn"
+                [class.active]="currentTravelMode === travelModes.WALKING"
+                (click)="changeTravelMode(travelModes.WALKING)">
+            <i class="fas fa-walking"></i> 步行
+        </button>
+        <button class="travel-mode-btn"
+                [class.active]="currentTravelMode === travelModes.BICYCLING"
+                (click)="changeTravelMode(travelModes.BICYCLING)">
+            <i class="fas fa-bicycle"></i> 騎車
+        </button>
+        <button class="travel-mode-btn"
+                [class.active]="currentTravelMode === travelModes.TRANSIT"
+                (click)="changeTravelMode(travelModes.TRANSIT)">
+            <i class="fas fa-bus"></i> 公車
+        </button>
+      </div>
+      <!-- 顯示目前位置的標記，並應用 createCurrentLocationMarkerOptions -->
+      <map-advanced-marker [position]="markerPosition" [options]="createCurrentLocationMarkerOptions()"
+        [title]="markerTitle">
+      </map-advanced-marker>
+
+      <!-- 顯示卡片所在位置的其他標記，並應用 createCardLocationMarkerOptions -->
+      <map-advanced-marker
+    *ngFor="let marker of markers; let i = index"
+    [position]="marker"
+    (mapClick)="onMarkerClick($event, filteredRecords[i], $event)"
+    [options]="createCardLocationMarkerOptions(
+        helpService.getDistrictName(filteredRecords[i].districtId),
+        helpService.getHelpClassName(filteredRecords[i].helpClass),
+        filteredRecords[i].name,
+        filteredRecords[i]
+    )">
+
+</map-advanced-marker>
+    </google-map>
+  </div>
+
+
+</div>

@@ -1,0 +1,35 @@
+.navbar-brand {
+  text-decoration: none !important;  /* 移除下劃線 */
+  border: none !important;           /* 移除邊框 */
+  outline: none !important;          /* 移除輪廓 */
+}
+
+/* 移除所有狀態下的文本裝飾 */
+.navbar-brand,
+.navbar-brand:hover,
+.navbar-brand:focus,
+.navbar-brand:active {
+  text-decoration: none !important;
+  border: none !important;
+  outline: none !important;
+}
+
+/* 同時處理頂部的鏈接 */
+.top-info a,
+.top-link a {
+  text-decoration: none !important;
+  border: none !important;
+  outline: none !important;
+}
+
+.top-info a:hover,
+.top-link a:hover {
+  text-decoration: none !important;
+}
+
+/* 確保標題文字樣式正確 */
+.navbar-brand h1 {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}

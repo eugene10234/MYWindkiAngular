@@ -1,0 +1,122 @@
+<div class="container">
+  <h2 class="title">訂單查詢</h2>
+
+  <!-- 未登入提示 -->
+  <div *ngIf="!isMemberLoggedIn" class="login-prompt">
+    <p>請先登入會員以查看訂單</p>
+    <button class="login-btn" (click)="openLoginForm()">登入會員</button>
+  </div>
+
+  <!-- 已登入會員的訂單內容 -->
+  <div *ngIf="isMemberLoggedIn">
+    <!-- 日期搜尋區塊 -->
+    <div class="search-container">
+      <div class="date-inputs">
+        <div class="date-field">
+          <label for="startDate">開始日期：</label>
+          <input
+            type="date"
+            id="startDate"
+            [(ngModel)]="startDate"
+            [max]="endDate"
+            placeholder="選擇開始日期">
+        </div>
+        <div class="date-field">
+          <label for="endDate">結束日期：</label>
+          <input
+            type="date"
+            id="endDate"
+            [(ngModel)]="endDate"
+            [min]="startDate"
+            placeholder="選擇結束日期">
+        </div>
+      </div>
+      <div class="search-buttons">
+        <button (click)="searchByDateRange()" class="search-btn">搜尋</button>
+        <button (click)="resetSearch()" class="reset-btn">顯示全部</button>
+      </div>
+    </div>
+
+    <!-- 錯誤訊息 -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <!-- 添加排序按鈕 -->
+    <button class="sort-button" (click)="toggleSort()" style="color: black;">
+      {{ isNewestFirst ? '切換至舊到新' : '切換至新到舊' }}
+      <i class="fas fa-sort"></i>
+    </button>
+
+    <!-- 訂單列表 -->
+    <div class="orders-container" *ngIf="orders.length > 0">
+      <table class="orders-table">
+        <thead>
+          <tr>
+            <th>訂單編號</th>
+            <th>總幫助點數</th>
+            <th>狀態</th>
+            <th>訂單時間</th>
+            <th>執行狀態</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let order of orders">
+            <tr>
+              <td>{{ order.fOrderId }}</td>
+              <td>{{ order.fTotalHelpPoint }}</td>
+              <td>{{ order.fStatus | orderStatus }}</td>
+              <td>{{ order.fOrderTime | date:'yyyy/MM/dd HH:mm' }}</td>
+              <td>{{ order.fExecStatus | execStatus }}</td>
+              <td>
+                <button class="detail-button" (click)="viewOrderDetails(order.fOrderId)">
+                  訂單明細
+                </button>
+              </td>
+            </tr>
+            <!-- 訂單明細（直接在對應訂單下方） -->
+            <tr *ngIf="selectedOrderId === order.fOrderId && orderDetails.length > 0">
+              <td colspan="6">
+                <div class="order-details">
+                  <h3 class="section-title">訂單明細：#{{selectedOrderId}}</h3>
+                  <table class="details-table">
+                    <thead>
+                      <tr>
+                        <th>項次</th>
+                        <th>商品名稱</th>
+                        <th>數量</th>
+                        <th>點數</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let detail of orderDetails; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>
+                          <a [routerLink]="['/detail', detail.productId]" class="product-link">
+                            {{ detail.productName }}
+                          </a>
+                        </td>
+                        <td>{{ detail.fAmount }}</td>
+                        <td>{{ detail.fHelpPoint }}</td>
+                        <td>
+                          <button (click)="addToCart(detail)" class="add-to-cart-button" >加入購物車</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+

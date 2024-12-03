@@ -1,0 +1,1237 @@
+// 引入 Remix Icon 字體圖標
+@import "remixicon/fonts/remixicon.css";
+
+// 頁面基本間距
+.page-spacing {
+  padding-top: 10px;
+}
+
+// 主要布局容器 - 三欄式布局
+.layout-container {
+  background-color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+// 左側導航欄
+.left-sidebar {
+  width: 275px;
+  padding: 0 12px;
+  position: sticky; // 固定位置
+  top: 0;
+  height: 100vh;
+
+  // 導航菜單容器
+  .nav-menu {
+    padding: 12px 0;
+
+    // 導航項目
+    .nav-item {
+      display: flex;
+      align-items: center;
+      padding: 16px;
+      margin: 4px 0;
+      cursor: pointer;
+      border-radius: 9999px;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: rgba(15, 20, 25, 0.1);
+      }
+
+      // 導航圖標
+      i {
+        font-size: 24px;
+        margin-right: 16px;
+      }
+
+      // 導航文字
+      span {
+        font-size: 20px;
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+// 主內容區域
+.main-content {
+  width: 100%;
+  max-width: 1200px;  // 增加最寬度
+  flex: 1;
+  margin: 0 auto;
+}
+
+// 建貼文片
+.create-post-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  margin-bottom: 20px;
+
+  // 卡片標題
+  .create-post-title {
+    color: #050505;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 16px 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e4e6eb;
+  }
+
+  // 貼文輸入區域
+  .create-post-input {
+    position: relative;
+
+    .preview-area {
+      margin: 10px 0;
+
+      .image-preview {
+        position: relative;
+        display: inline-block;
+
+        img {
+          max-width: 200px;
+          max-height: 200px;
+          border-radius: 8px;
+        }
+
+        .remove-preview {
+          position: absolute;
+          top: 5px;
+          right: 5px;
+          background: rgba(0,0,0,0.5);
+          color: white;
+          padding: 5px;
+          border-radius: 50%;
+          cursor: pointer;
+        }
+      }
+
+      .location-text {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 5px 10px;
+        background: #f0f0f0;
+        border-radius: 4px;
+
+        .remove-preview {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .post-input {
+      width: 100%;
+      border: none;
+      font-size: 20px;
+      line-height: 1.5;
+      padding: 12px;
+      resize: none;
+      outline: none;
+      color: #000;
+
+      &::placeholder {
+        color: #000;
+      }
+    }
+  }
+
+  // 可選：添加字數限制提示
+  .char-count {
+    color: #536471;
+    font-size: 14px;
+    text-align: right;
+    margin-right: 16px;
+
+    &.near-limit {
+      color: #ffd700;
+    }
+
+    &.at-limit {
+      color: #ff4444;
+    }
+  }
+
+  // 發文操作按鈕區
+  .post-action-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+    border-top: 1px solid #eee;
+    margin-top: 12px;
+
+    // 左側功能按鈕組
+    .action-buttons-left {
+      display: flex;
+      gap: 8px;
+      position: relative;
+
+      .emoji-picker-container {
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+        z-index: 1000;
+        background: white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        border-radius: 8px;
+      }
+
+      .preview-container {
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+        padding: 8px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+
+        img {
+          max-width: 200px;
+          max-height: 200px;
+          object-fit: contain;
+        }
+      }
+
+      .location-preview {
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+        padding: 8px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        font-size: 14px;
+      }
+
+      // 單個功能按鈕
+      .action-button {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border-radius: 50%;
+        transition: background-color 0.2s;
+
+        &:hover {
+          background-color: rgba(29, 155, 240, 0.1);
+        }
+
+        i {
+          font-size: 20px;
+          color: rgb(29, 155, 240);
+        }
+
+        // Demo 按鈕特殊樣式
+        &.demo-button {
+          i {
+            font-size: 18px;
+            color: #1da1f2;
+          }
+
+          &:hover {
+            background-color: rgba(29, 155, 240, 0.1);
+            cursor: pointer;
+          }
+
+          &:active {
+            background-color: rgba(29, 155, 240, 0.2);
+          }
+        }
+      }
+    }
+
+    // 發送按鈕
+    .send-button {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border-radius: 50%;
+      background-color: rgb(29, 155, 240);
+      transition: all 0.2s;
+
+      i {
+        font-size: 20px;
+        color: white;
+      }
+
+      &:hover {
+        background-color: rgb(26, 140, 216);
+      }
+
+      &.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+// 手機版響應式設計
+@media (max-width: 768px) {
+  // 調整容器為垂直排列
+  .layout-container {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  // 手機版導航欄固定在底部
+  .left-sidebar {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: white;
+    box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 4px 0;
+  }
+
+  // 調整貼文卡片在手機上的顯示
+  .post-card {
+    margin: 8px;
+    padding: 12px;
+
+    .post-header {
+      .user-info {
+        .avatar-circle {
+          width: 36px;
+          height: 36px;
+        }
+
+        .user-details {
+          .username {
+            font-size: 14px;
+          }
+
+          .post-type,
+          .post-time {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+
+    .post-content {
+      font-size: 14px;
+    }
+
+    .post-actions {
+      .action-btn {
+        font-size: 13px;
+
+        i {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}
+
+// 大螢幕響應式設計
+@media (min-width: 1025px) {
+  .layout-container {
+    padding-left: 16px;
+  }
+}
+
+// 右側邊欄
+.right-sidebar {
+  width: 500px;
+  padding: 16px;
+  position: sticky;
+  top: 60px;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+
+  // 股票行情區塊
+  .stock-ticker {
+    background: white;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+
+    // 股票列表
+    .stock-list {
+      .stock-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid #eee;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        // 股票基本信息
+        .stock-info {
+          .stock-symbol {
+            font-weight: 600;
+            margin-right: 8px;
+          }
+
+          .stock-name {
+            color: #666;
+            font-size: 0.9em;
+          }
+        }
+
+        // 股票價格信息
+        .stock-price {
+          text-align: right;
+
+          &.up {
+            color: #4caf50;
+          }
+
+          &.down {
+            color: #f44336;
+          }
+
+          .current-price {
+            font-weight: 600;
+            margin-right: 8px;
+          }
+        }
+      }
+    }
+  }
+
+  // 新聞區塊
+  .news-section {
+    background: white;
+    border-radius: 8px;
+    padding: 16px;
+
+    // 新聞列表
+    .news-list {
+      .news-item {
+        display: flex;
+        gap: 16px;
+        padding: 16px 0;
+        border-bottom: 1px solid #eee;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        // 新聞圖片
+        .news-image {
+          flex: 0 0 120px;
+
+          img {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 4px;
+          }
+        }
+
+        // 新
+        .news-content {
+          flex: 1;
+
+          .news-title {
+            margin: 0 0 8px 0;
+            font-size: 1em;
+
+            a {
+              color: inherit;
+              text-decoration: none;
+
+              &:hover {
+                color: #1877f2;
+              }
+            }
+          }
+
+          // 新聞元數據
+          .news-meta {
+            font-size: 0.9em;
+            color: #666;
+
+            .news-publisher {
+              margin-right: 8px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// 貼文卡片樣式
+.post-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+
+  .post-header {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+
+    .user-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .post-info {
+      flex: 1;
+
+      .user-info {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 4px;
+
+        .username {
+          font-weight: 600;
+          color: #000;
+        }
+
+        .post-time {
+          color: #536471;
+          font-size: 14px;
+        }
+      }
+
+      .post-content {
+        font-size: 15px;
+        line-height: 1.5;
+        color: #0f1419;
+        margin-bottom: 12px;
+      }
+    }
+  }
+
+  .post-actions {
+    display: flex;
+    gap: 32px;
+    padding-top: 12px;
+    border-top: 1px solid #eee;
+
+    .action-button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      color: #536471;
+      transition: all 0.2s;
+
+      i {
+        font-size: 18px;
+        padding: 8px;
+        border-radius: 50%;
+        transition: all 0.2s;
+
+        &.filled {
+          color: #f91880;
+        }
+      }
+
+      .count {
+        font-size: 14px;
+      }
+
+      &:hover {
+        &:nth-child(1) {
+          color: #f91880;
+          i { background-color: rgba(249, 24, 128, 0.1); }
+        }
+        &:nth-child(2) {
+          color: #1d9bf0;
+          i { background-color: rgba(29, 155, 240, 0.1); }
+        }
+        &:nth-child(3) {
+          color: #00ba7c;
+          i { background-color: rgba(0, 186, 124, 0.1); }
+        }
+      }
+    }
+  }
+}
+
+// 如果需要調整整體容器寬度
+.posts-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.emoji-container {
+  position: relative;
+}
+
+.emoji-picker-wrapper {
+  position: absolute;
+  bottom: 100%;  // 位於按鈕上方
+  left: 0;
+  z-index: 1000;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  margin-bottom: 8px;  // 與鈕保持一些距離
+}
+
+// 點擊其他區域時關閉選擇器的遮罩層
+.emoji-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+}
+
+// 如果需要修改 emoji picker 內部樣式
+::ng-deep {
+  .emoji-mart {
+    background-color: white !important;
+  }
+
+  .emoji-mart-category-label {
+    background-color: white !important;
+  }
+
+  .emoji-mart-search {
+    background-color: white !important;
+  }
+
+  .emoji-mart-bar {
+    background-color: white !important;
+  }
+}
+
+.location-text {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background-color: #f0f2f5;
+  border-radius: 8px;
+  margin: 8px 0;
+
+  i {
+    font-size: 16px;
+
+    &.pi-spinner {
+      animation: spin 1s linear infinite;
+    }
+  }
+
+  .remove-preview {
+    cursor: pointer;
+    opacity: 0.6;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+// 評論區域樣式
+.comments-section {
+  margin-left: 71px;
+  margin-top: 10px;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+
+  .comment-preview {
+    display: flex;
+    gap: 10px;
+    padding: 10px 0;
+
+    .comment-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .comment-content {
+      flex: 1;
+
+      .commenter-name {
+        font-weight: 600;
+        font-size: 14px;
+        color: #0f1419;
+      }
+
+      .comment-text {
+        margin: 4px 0;
+        font-size: 14px;
+        color: #536471;
+      }
+
+      .comment-time {
+        font-size: 12px;
+        color: #536471;
+      }
+    }
+  }
+
+  .view-more-comments {
+    color: rgb(29, 155, 240);
+    font-size: 14px;
+    cursor: pointer;
+    padding: 8px 0;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// 評論彈出層樣式
+.comments-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    max-height: 80vh;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    z-index: 1;
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
+      border-bottom: 1px solid #eee;
+
+      h3 {
+        margin: 0;
+        font-size: 20px;
+      }
+
+      .close-button {
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 50%;
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+
+    .comments-list {
+      padding: 16px;
+      overflow-y: auto;
+      max-height: calc(80vh - 60px);
+
+      .comment-item {
+        display: flex;
+        gap: 12px;
+        padding: 12px 0;
+        border-bottom: 1px solid #eee;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .comment-avatar {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          overflow: hidden;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+
+        .comment-content {
+          flex: 1;
+
+          .commenter-name {
+            font-weight: 600;
+            font-size: 15px;
+            color: #0f1419;
+          }
+
+          .comment-text {
+            margin: 4px 0;
+            font-size: 15px;
+            color: #0f1419;
+          }
+
+          .comment-time {
+            font-size: 13px;
+            color: #536471;
+          }
+        }
+      }
+    }
+  }
+}
+
+.posts-feed {
+  width: 100%;
+  padding: 20px 0;
+
+  .post-card {
+    width: 100%;
+    max-width: 1000px;  // 設定卡片最大寬度
+    margin: 0 auto 32px;  // 水置中
+    background: white;
+    border: 1px solid #e6ecf0;
+    border-radius: 16px;
+    padding: 24px;
+    box-sizing: border-box;
+  }
+}
+
+// 添加卡片的陰影效果，增加層次感
+.post-card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+}
+
+// 確保頭像大小一致
+.avatar {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.main-content {
+  width: 100%;
+  max-width: 1000px;  // 增加最大寬度
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.posts-feed {
+  .post-card {
+    width: 100%;
+    padding: 24px;
+    margin-bottom: 32px;
+
+    .post-actions {
+      margin: 24px 0;
+      padding: 12px 0;
+      display: flex;
+      justify-content: space-around;  // 平均分配空間
+
+      .action-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        cursor: pointer;
+        border-radius: 20px;
+        transition: all 0.2s ease;
+
+        i {
+          font-size: 24px;  // 增加示大小
+        }
+
+        span {
+          font-size: 16px;  // 增數字大小
+          font-weight: 500;
+        }
+
+        // 愛心按鈕
+        &.like-action {
+          &:hover, &.active {
+            color: #f91880;
+            background-color: rgba(249, 24, 128, 0.1);
+          }
+        }
+
+        // 評論按鈕
+        &.comment-action {
+          &:hover, &.active {
+            color: #1d9bf0;
+            background-color: rgba(29, 155, 240, 0.1);
+          }
+        }
+
+        // 分享按鈕
+        &.share-action {
+          &:hover, &.active {
+            color: #00ba7c;
+            background-color: rgba(0, 186, 124, 0.1);
+          }
+        }
+      }
+    }
+  }
+}
+
+// 評論對話框樣式
+::ng-deep .p-dialog {
+  .p-dialog-header {
+    padding: 1rem;
+    border-bottom: 1px solid #e6ecf0;
+
+    .p-dialog-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+  }
+
+  .p-dialog-content {
+    padding: 0;
+  }
+}
+
+.comments-list {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 1rem;
+
+  .comment-item {
+    padding: 1rem;
+    border-bottom: 1px solid #e6ecf0;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .comment-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+
+      .commenter-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 12px;
+      }
+
+      .comment-info {
+        .commenter-name {
+          font-weight: 600;
+          color: #000;
+          display: block;
+        }
+
+        .comment-time {
+          font-size: 0.85rem;
+          color: #536471;
+        }
+      }
+    }
+
+    .comment-text {
+      margin-left: 52px;
+      color: #0f1419;
+      line-height: 1.5;
+    }
+  }
+}
+
+.comment-input-area {
+  padding: 1rem;
+  border-top: 1px solid #e6ecf0;
+  background: #fff;
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;  // 讓按鈕對齊輸入框底部
+
+  .comment-textarea {
+    flex: 1;
+    border: 1px solid #cfd9de;
+    border-radius: 16px;
+    padding: 12px;
+    resize: none;
+    font-size: 15px;
+
+    &:focus {
+      outline: none;
+      border-color: #1da1f2;
+      box-shadow: 0 0 0 1px #1da1f2;
+    }
+  }
+
+  .comment-submit-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #1da1f2;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+
+    i {
+      color: white;
+      font-size: 16px;
+    }
+
+    &:hover {
+      background-color: #1a8cd8;
+    }
+
+    &:disabled {
+      background-color: #9bd0f9;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.post-button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #1da1f2;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+  margin-left: auto;  // 靠右對齊
+
+  i {
+    color: white;
+    font-size: 16px;
+  }
+
+  &:hover {
+    background-color: #1a8cd8;
+  }
+
+  &:disabled {
+    background-color: #9bd0f9;
+    cursor: not-allowed;
+  }
+}
+
+::ng-deep .custom-dialog {
+  .p-dialog-header {
+    padding: 1rem;
+    border-bottom: 1px solid #e6ecf0;
+    position: relative;
+
+    .dialog-header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .dialog-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #0f1419;
+      }
+
+      .close-button {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: none;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s;
+        padding: 0;
+
+        i {
+          font-size: 16px;
+          color: #536471;
+        }
+
+        &:hover {
+          background-color: rgba(15, 20, 25, 0.1);
+        }
+      }
+    }
+  }
+
+  // 移除原有的關閉按鈕
+  .p-dialog-header-icons {
+    display: none;
+  }
+}
+
+.post-image {
+  max-width: 100%;
+  margin-top: 8px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.post-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+// Twitter 風格的編輯對話框
+::ng-deep .twitter-edit-dialog {
+  .p-dialog-content {
+    padding: 0;
+    border-radius: 16px;
+  }
+
+  .dialog-content {
+    .dialog-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      border-bottom: 1px solid rgb(239, 243, 244);
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        .close-btn {
+          background: none;
+          border: none;
+          padding: 8px;
+          cursor: pointer;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          &:hover {
+            background-color: rgba(15, 20, 25, 0.1);
+          }
+
+          i {
+            font-size: 20px;
+            color: rgb(15, 20, 25);
+          }
+        }
+
+        .header-title {
+          font-size: 20px;
+          font-weight: 600;
+          color: rgb(15, 20, 25);
+        }
+      }
+
+      .save-btn {
+        background-color: rgb(29, 155, 240);
+        color: white;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        i {
+          font-size: 18px;
+        }
+
+        &:hover {
+          background-color: rgb(26, 140, 216);
+          transform: scale(1.05);
+        }
+
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+          transform: none;
+        }
+      }
+    }
+
+    .edit-area {
+      padding: 12px 16px;
+
+      .user-info {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 12px;
+
+        .user-avatar {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+        }
+
+        .username {
+          font-weight: 600;
+          color: rgb(15, 20, 25);
+        }
+      }
+
+      .edit-input {
+        width: 100%;
+        border: none;
+        font-size: 20px;
+        line-height: 1.5;
+        padding: 12px 0;
+        resize: none;
+        outline: none;
+        color: rgb(15, 20, 25);
+
+        &::placeholder {
+          color: rgb(83, 100, 113);
+        }
+      }
+    }
+  }
+}

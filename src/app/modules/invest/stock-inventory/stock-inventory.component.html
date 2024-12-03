@@ -1,0 +1,50 @@
+<!-- stock-inventory.component.html -->
+<div class="container">
+  <h2>股票庫存清單</h2>
+
+  <!-- 庫存清單表格 -->
+  <table>
+    <thead>
+      <tr>
+        <th>下單編號</th>
+        <th>會員編號</th>
+        <th>券商ID</th>
+        <th>股票代號</th>
+        <th>股票名稱</th>
+        <th>交易種類</th>
+        <th>昨餘股數</th>
+        <th>調整股數</th>
+        <th>今餘股數</th>
+        <th>尚可沖銷</th>
+        <th>現價</th>
+        <th>成交均價</th>
+        <th>股票市值</th>
+        <th>持有成本</th>
+        <th>預估損益</th>
+        <th>預估獲利率</th>
+        <th>損益平衡價</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let stock of stockInStocks">
+        <td>{{ stock.fInStockId }}</td>
+        <td>{{ stock.fMemberId }}</td>
+        <td>{{ stock.fBrokerId }}</td>
+        <td>{{ stock.fStockId }}</td>
+        <td>{{ stock.fStockName }}</td>
+        <td>{{ stock.fTrantype }}</td>
+        <td>{{ stock.fLeftStock }}</td>
+        <td>{{ stock.fStockAdj }}</td>
+        <td>{{ stock.fStockNow }}</td>
+        <td>{{ stock.fStockTran }}</td>
+        <td>{{ stock.fStockPriceN | currency }}</td>
+        <td>{{ stock.fStockPriceT | currency }}</td>
+        <td>{{ stock.fStockPriceTS | currency }}</td>
+        <td>{{ stock.fStockCost | currency }}</td>
+        <td>{{ stock.fEstPro | currency }}</td>
+        <td>{{ stock.fEstProP | percent:'1.2-2' }}</td>
+        <td>{{ stock.fBalancePrice | currency }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

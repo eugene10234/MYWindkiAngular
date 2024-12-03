@@ -1,0 +1,62 @@
+<div class="sendmail-container">
+  <h2>郵件通知設定</h2>
+
+  <div class="notification-settings">
+    <div class="setting-item">
+      <label class="switch">
+        <input type="checkbox" [(ngModel)]="mailSettings.newsLetter">
+        <span class="slider"></span>
+      </label>
+      <div class="setting-info">
+        <span class="setting-text">接收最新消息</span>
+        <span class="setting-desc">接收網站的最新消息和更新通知</span>
+      </div>
+    </div>
+
+    <div class="setting-item">
+      <label class="switch">
+        <input type="checkbox" [(ngModel)]="mailSettings.activityNotice">
+        <span class="slider"></span>
+      </label>
+      <div class="setting-info">
+        <span class="setting-text">活動通知</span>
+        <span class="setting-desc">接收活動邀請和提醒</span>
+      </div>
+    </div>
+
+    <div class="setting-item">
+      <label class="switch">
+        <input type="checkbox" [(ngModel)]="mailSettings.systemNotice">
+        <span class="slider"></span>
+      </label>
+      <div class="setting-info">
+        <span class="setting-text">系統通知</span>
+        <span class="setting-desc">接收系統維護和重要更新通知</span>
+      </div>
+    </div>
+
+    <div class="setting-item">
+      <label class="switch">
+        <input type="checkbox" [(ngModel)]="mailSettings.promotionNotice">
+        <span class="slider"></span>
+      </label>
+      <div class="setting-info">
+        <span class="setting-text">優惠通知</span>
+        <span class="setting-desc">接收優惠活動和折扣資訊</span>
+      </div>
+    </div>
+
+    <div class="setting-item">
+      <label class="switch">
+        <input type="checkbox" [(ngModel)]="mailSettings.messageNotice">
+        <span class="slider"></span>
+      </label>
+      <div class="setting-info">
+        <span class="setting-text">訊息通知</span>
+        <span class="setting-desc">接收私人訊息和回覆通知</span>
+      </div>
+    </div>
+
+    <button class="save-btn" (click)="saveMailSettings()">儲存設定</button>
+  </div>
+</div>
